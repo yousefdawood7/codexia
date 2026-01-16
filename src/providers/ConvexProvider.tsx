@@ -7,6 +7,12 @@ import { env } from "@/lib/env";
 
 const convex = new ConvexReactClient(env.NEXT_PUBLIC_CONVEX_URL);
 
+/**
+ * Wraps its children with a Convex provider preconfigured with Clerk authentication.
+ *
+ * @param children - Elements to render inside the provider
+ * @returns A React element that provides a Convex client and Clerk authentication to descendants
+ */
 export default function ConvexClientProvider({
   children,
 }: {
