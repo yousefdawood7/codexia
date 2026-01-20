@@ -1,11 +1,10 @@
-import AuthLoading from "@/features/auth/components/AuthLoading";
-import Unauthenticated from "@/features/auth/components/Unauthenticated";
+"use client";
 
-export default function Home() {
+export default function Page() {
   return (
     <>
-      <Unauthenticated />
-      <AuthLoading />
+      {/* <AuthLoading />
+      <Unauthenticated /> */}
     </>
   );
 }

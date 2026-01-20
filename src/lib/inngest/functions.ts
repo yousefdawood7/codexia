@@ -16,8 +16,8 @@ export const googleAI = inngest.createFunction(
     step,
   }) => {
     const extractedUrls = await step.run("extract-urls", async () => {
-      const getAllExtractedUrls = prompt.match(URL_REGEX);
-      return getAllExtractedUrls;
+      const matchedUrls = prompt?.match(URL_REGEX) ?? [];
+      return matchedUrls;
     });
 
     const scrapeExtractedUrls = await step.run(
@@ -39,12 +39,15 @@ export const googleAI = inngest.createFunction(
     await step.run("generate text with google gemini", async () => {
       const { text } = await generateText({
         model: google("gemini-flash-latest"),
-        prompt: `
+        prompt: scrapeExtractedUrls
+          ? `
         Context: ${scrapeExtractedUrls}
 
         Question: ${prompt}
-        `,
+        `
+          : prompt,
       });
+
       return { response: text };
     });
   },
