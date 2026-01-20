@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Inter } from "next/font/google";
+import { IBM_Plex_Mono, Inter, Poppins } from "next/font/google";
 import ClerkProvider from "@/providers/ClerkProvider";
 import ConvexClientProvider from "@/providers/ConvexProvider";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import "./globals.css";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -12,7 +13,13 @@ const inter = Inter({
 const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   subsets: ["latin"],
-  weight: ["200", "400", "700"],
+  weight: ["200", "400", "600", "700"],
+});
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["200", "400", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${plexMono.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${plexMono.variable} ${poppins.variable} antialiased`}
+      >
         <ClerkProvider>
           <ConvexClientProvider>
             <ThemeProvider>{children}</ThemeProvider>
