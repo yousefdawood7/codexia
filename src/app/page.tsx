@@ -1,6 +1,7 @@
 import { FaGithub as GithubIcon } from "react-icons/fa";
-import { LucideSparkle } from "lucide-react";
-import ProjectCreate from "@/features/projects/components/ProjectCreate";
+import { LucideArrowRight, LucideGlobe, LucideSparkle } from "lucide-react";
+import CommandButton from "@/components/ui/CommandButton";
+import ProjectCard from "@/features/projects/components/ProjectCard";
 import ProjectHeader from "@/features/projects/components/ProjectHeader";
 
 export default function Page() {
@@ -10,15 +11,24 @@ export default function Page() {
         <ProjectHeader />
 
         <section className="flex gap-2.5 w-full ">
-          <ProjectCreate
+          <ProjectCard
             icon={<LucideSparkle className="size-7" />}
-            command="⌘J"
+            operation={<CommandButton operationString="⌘J" />}
             content="New"
           />
-          <ProjectCreate
+          <ProjectCard
             icon={<GithubIcon className="size-7" />}
-            command="⌘I"
+            operation={<CommandButton operationString="⌘I" />}
             content="Import"
+          />
+        </section>
+        <section className="space-y-2">
+          <p className="text-muted-foreground text-lg">Last updated</p>
+          <ProjectCard
+            title="Dummy Data"
+            footer="Dummy Updated"
+            icon={<LucideGlobe />}
+            operation={<LucideArrowRight />}
           />
         </section>
       </section>
