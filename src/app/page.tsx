@@ -3,13 +3,13 @@ import { LucideArrowRight, LucideGlobe, LucideSparkle } from "lucide-react";
 import CommandButton from "@/components/ui/CommandButton";
 import ProjectCard from "@/features/projects/components/ProjectCard";
 import ProjectHeader from "@/features/projects/components/ProjectHeader";
+import ProjectList from "@/features/projects/components/ProjectList";
 
 export default function Page() {
   return (
     <main className="min-h-svh bg-muted flex flex-col justify-center items-center font-poppins">
-      <section className="max-w-[750px] w-full flex flex-col gap-7">
+      <section className="max-w-[750px] w-full flex flex-col gap-7 px-5">
         <ProjectHeader />
-
         <section className="flex gap-2.5 w-full ">
           <ProjectCard
             icon={<LucideSparkle className="size-7" />}
@@ -30,6 +30,9 @@ export default function Page() {
             icon={<LucideGlobe />}
             operation={<LucideArrowRight />}
           />
+        </section>
+        <section>
+          <ProjectList />
         </section>
       </section>
     </main>
