@@ -5,9 +5,9 @@ import ProjectItem from "@/features/projects/components/ProjectItem";
 export default function ProjectList() {
   return (
     <section className="space-y-5">
-      <aside className="flex justify-between items-center">
+      <aside className="flex items-center justify-between">
         <p className="text-muted-foreground text-lg">Recent projects</p>
-        <section className="flex gap-2.5 items-center">
+        <section className="flex items-center gap-2.5">
           <p className="text-muted-foreground text-lg">View all</p>
           <CommandButton operationString="⌘K" />
         </section>

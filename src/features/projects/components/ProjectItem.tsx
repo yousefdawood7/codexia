@@ -13,7 +13,7 @@ export default function ProjectItem({
 }: ProjectItemProps) {
   return (
     <Item className="flex flex-row">
-      <ItemContent className="flex flex-row items-center justify-between text-muted-foreground text-lg">
+      <ItemContent className="text-muted-foreground flex flex-row items-center justify-between text-lg">
         <aside className="flex items-center gap-3.5">
           <Icon className="text-muted-foreground size-7" />
           <p className="text-lg">{title}</p>

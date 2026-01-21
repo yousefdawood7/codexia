@@ -6,7 +6,7 @@ export default function CommandButton({
   operationString: string;
 }) {
   return (
-    <Kbd className="border text-xl px-1.5 py-4 bg-transparent">
+    <Kbd className="border bg-transparent px-1.5 py-4 text-xl">
       {operationString}
     </Kbd>
   );

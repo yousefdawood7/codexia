@@ -25,12 +25,12 @@ export default function ProjectCard({
     <Item
       variant={"outline"}
       className={cn(
-        "w-full flex bg-accent hover:bg-accent/60 transition-colors",
+        "bg-accent hover:bg-accent/60 flex w-full transition-colors",
         footer ? "" : "gap-10",
       )}
     >
       <ItemHeader className="flex justify-between">
-        <aside className="flex gap-2.5 items-center">
+        <aside className="flex items-center gap-2.5">
           {icon}
           {title && <p className="text-xl">Test</p>}
         </aside>

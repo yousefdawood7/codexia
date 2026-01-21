@@ -7,10 +7,10 @@ import ProjectList from "@/features/projects/components/ProjectList";
 
 export default function Page() {
   return (
-    <main className="min-h-svh bg-muted flex flex-col justify-center items-center font-poppins">
-      <section className="max-w-[750px] w-full flex flex-col gap-7 px-5">
+    <main className="bg-muted font-poppins flex min-h-svh flex-col items-center justify-center">
+      <section className="flex w-full max-w-[750px] flex-col gap-7 px-5">
         <ProjectHeader />
-        <section className="flex gap-2.5 w-full ">
+        <section className="flex w-full gap-2.5">
           <ProjectCard
             icon={<LucideSparkle className="size-7" />}
             operation={<CommandButton operationString="⌘J" />}
