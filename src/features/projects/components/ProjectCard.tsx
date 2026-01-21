@@ -32,7 +32,7 @@ export default function ProjectCard({
       <ItemHeader className="flex justify-between">
         <aside className="flex items-center gap-2.5">
           {icon}
-          {title && <p className="text-xl">Test</p>}
+          {title && <p className="text-xl">{title}</p>}
         </aside>
         {operation}
       </ItemHeader>
