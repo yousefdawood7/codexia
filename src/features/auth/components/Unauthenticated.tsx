@@ -16,13 +16,13 @@ import {
 export default function Unauthenticated() {
   return (
     <UnauthenticatedClerk>
-      <section className="min-h-svh flex justify-center items-center px-1.5">
-        <Item variant="outline" className="w-full max-w-[750px] bg-muted">
-          <ItemMedia className="my-auto ">
+      <section className="flex min-h-svh items-center justify-center px-1.5">
+        <Item variant="outline" className="bg-muted w-full max-w-[750px]">
+          <ItemMedia className="my-auto">
             <ShieldAlert className="size-10" />
           </ItemMedia>
           <ItemContent>
-            <ItemTitle className="font-semibold text-xl">
+            <ItemTitle className="text-xl font-semibold">
               Unauthorized Access
             </ItemTitle>
             <ItemDescription className="text-md">

@@ -6,7 +6,7 @@ import { Spinner } from "@/components/ui/spinner";
 export default function AuthLoading() {
   return (
     <AuthLoadingClerk>
-      <section className="min-h-svh flex justify-center items-center px-1.5">
+      <section className="flex min-h-svh items-center justify-center px-1.5">
         <Spinner className="size-12" />
       </section>
     </AuthLoadingClerk>
