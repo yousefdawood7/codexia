@@ -8,12 +8,11 @@ import CommandButton from "@/components/ui/CommandButton";
 import { Spinner } from "@/components/ui/spinner";
 import LastUpdatedProject from "@/features/projects/components/LastUpdatedProject";
 import ProjectItem from "@/features/projects/components/ProjectItem";
+import ViewAllProjects from "@/features/projects/components/ViewAllProjects";
 import { getCurrentDate, getFormattedTime } from "@/lib/utils";
 
 export default function ProjectList() {
-  const projectItems = useQuery(api.functions.getProjects, {
-    numberOfProjects: 5,
-  });
+  const projectItems = useQuery(api.functions.getProjects, {});
 
   if (projectItems === undefined)
     return (
@@ -38,7 +37,7 @@ export default function ProjectList() {
     );
 
   const [lastUpdatedProject] = projectItems.slice(0, 1);
-  const restProjects = projectItems.slice(1);
+  const restProjects = projectItems.slice(1, 5);
 
   return (
     <>
@@ -49,7 +48,7 @@ export default function ProjectList() {
           <aside className="flex items-center justify-between">
             <p className="text-muted-foreground text-lg">Recent projects</p>
             <section className="flex items-center gap-2.5">
-              <p className="text-muted-foreground text-lg">View all</p>
+              <ViewAllProjects projects={projectItems} />
               <CommandButton operationString="⌘K" />
             </section>
           </aside>
