@@ -9,13 +9,13 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { useCommandPalette } from "@/contexts/CommandPaletteProvider";
 import { IMPORT_STATUS } from "@/features/projects/constants";
-import { useCommandPalette } from "@/hooks/useCommandPalette";
 
 type ViewAllProjectsProps = { projects: Doc<"projects">[] };
 
 export default function ViewAllProjects({ projects }: ViewAllProjectsProps) {
-  const [open, setOpen] = useCommandPalette();
+  const { open, setOpen } = useCommandPalette();
 
   return (
     <>

@@ -1,38 +1,25 @@
-"use client";
-
-import { api } from "@/../convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import CommandButton from "@/components/ui/CommandButton";
-import { useOptimisticProject } from "@/features/projects/hooks/useOptimisticProject";
-import { generateRandomNames } from "@/lib/utils";
 
 type ProjectActionProps = {
   icon: React.ReactNode;
   label: string;
   shortcut?: string;
   type?: "project";
+  handleClick?: () => void;
 };
 
 export default function ProjectAction({
-  type,
   icon,
   label,
   shortcut,
+  handleClick,
 }: ProjectActionProps) {
-  const createOptimisticProject = useOptimisticProject(
-    api.functions.createProject,
-  );
-
   return (
     <Button
+      onClick={handleClick}
       variant="ghost"
       className={`text-muted-foreground hover:text-foreground h-9 w-full justify-start gap-2.5 px-3 text-sm`}
-      onClick={
-        type === "project"
-          ? () =>
-              createOptimisticProject({ projectName: generateRandomNames() })
-          : undefined
-      }
     >
       {icon}
       <span className="flex-1 text-left">{label}</span>
