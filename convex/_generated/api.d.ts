@@ -8,13 +8,21 @@
  * @module
  */
 
+import type * as dal from "../dal.js";
+import type * as functions from "../functions.js";
+import type * as types from "../types.js";
+
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
 } from "convex/server";
 
-declare const fullApi: ApiFromModules<{}>;
+declare const fullApi: ApiFromModules<{
+  dal: typeof dal;
+  functions: typeof functions;
+  types: typeof types;
+}>;
 
 /**
  * A utility for referencing Convex functions in your app's public API.

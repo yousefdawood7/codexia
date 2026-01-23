@@ -5,6 +5,7 @@ export default defineSchema({
   projects: defineTable({
     name: v.string(),
     ownerID: v.string(),
+    updatedAt: v.number(),
     importStatus: v.union(
       v.literal("importing"),
       v.literal("completed"),
