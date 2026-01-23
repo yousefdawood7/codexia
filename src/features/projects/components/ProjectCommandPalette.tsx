@@ -12,9 +12,11 @@ import {
 import { useCommandPalette } from "@/contexts/CommandPaletteProvider";
 import { IMPORT_STATUS } from "@/features/projects/constants";
 
-type ViewAllProjectsProps = { projects: Doc<"projects">[] };
+type ProjectCommandPaletteProps = { projects: Doc<"projects">[] };
 
-export default function ViewAllProjects({ projects }: ViewAllProjectsProps) {
+export default function ProjectCommandPalette({
+  projects,
+}: ProjectCommandPaletteProps) {
   const { open, setOpen } = useCommandPalette();
 
   return (

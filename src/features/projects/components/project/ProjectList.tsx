@@ -7,7 +7,7 @@ import Placeholder from "@/components/Placeholder";
 import CommandButton from "@/components/ui/CommandButton";
 import { Spinner } from "@/components/ui/spinner";
 import ProjectItem from "@/features/projects/components/project/ProjectItem";
-import ViewAllProjects from "@/features/projects/components/ViewAllProjects";
+import ProjectCommandPalette from "@/features/projects/components/ProjectCommandPalette";
 import { IMPORT_STATUS } from "@/features/projects/constants";
 import { getFormattedTime } from "@/lib/utils";
 
@@ -80,7 +80,7 @@ export default function ProjectList() {
               className="flex items-center gap-2"
               aria-label="Project actions"
             >
-              <ViewAllProjects projects={projectItems} />
+              <ProjectCommandPalette projects={projectItems} />
               <CommandButton operationString="⌘K" />
             </nav>
           </header>
