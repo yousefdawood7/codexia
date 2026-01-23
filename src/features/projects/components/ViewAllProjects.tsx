@@ -1,4 +1,3 @@
-import { LucideGlobe } from "lucide-react";
 import { Doc } from "@/../convex/_generated/dataModel";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,12 +9,14 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { IMPORT_STATUS } from "@/features/projects/constants";
 import { useCommandPalette } from "@/hooks/useCommandPalette";
 
 type ViewAllProjectsProps = { projects: Doc<"projects">[] };
 
 export default function ViewAllProjects({ projects }: ViewAllProjectsProps) {
   const [open, setOpen] = useCommandPalette();
+
   return (
     <>
       <Button
@@ -31,12 +32,15 @@ export default function ViewAllProjects({ projects }: ViewAllProjectsProps) {
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Projects">
-              {projects.map((project) => (
-                <CommandItem key={project._id}>
-                  <LucideGlobe className="size-12" />
-                  {project.name}
-                </CommandItem>
-              ))}
+              {projects.map((project) => {
+                const ProjectIcon = IMPORT_STATUS[project.importStatus];
+                return (
+                  <CommandItem key={project._id}>
+                    <ProjectIcon className="size-12" />
+                    {project.name}
+                  </CommandItem>
+                );
+              })}
             </CommandGroup>
           </CommandList>
         </Command>

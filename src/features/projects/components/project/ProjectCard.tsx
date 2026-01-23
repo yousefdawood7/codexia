@@ -17,6 +17,7 @@ type ProjectCardProps = {
   footer?: string;
   content?: string;
   operationContent: React.ReactElement;
+  compact?: boolean;
 };
 
 export default function ProjectCard({
@@ -26,6 +27,7 @@ export default function ProjectCard({
   content,
   footer,
   operationContent,
+  compact = false,
 }: ProjectCardProps) {
   const createOptimisticProject = useOptimisticProject(
     api.functions.createProject,
@@ -36,7 +38,7 @@ export default function ProjectCard({
       variant={"outline"}
       className={cn(
         "bg-accent hover:bg-accent/60 flex w-full transition-colors",
-        footer ? "" : "gap-10",
+        footer ? "" : compact ? "gap-2" : "gap-10",
       )}
       onClick={
         type === "project"
@@ -48,17 +50,29 @@ export default function ProjectCard({
       <ItemHeader className="flex justify-between">
         <aside className="flex items-center gap-2">
           {icon}
-          {title && <p className="text-xl">{title}</p>}
+          {title && (
+            <p className={cn(compact ? "text-lg" : "text-xl")}>{title}</p>
+          )}
         </aside>
         {operationContent}
       </ItemHeader>
 
       {footer ? (
-        <ItemFooter className="text-muted-foreground text-lg">
+        <ItemFooter
+          className={cn(
+            "text-muted-foreground",
+            compact ? "text-base" : "text-lg",
+          )}
+        >
           {footer}
         </ItemFooter>
       ) : (
-        <ItemContent className="text-xl font-semibold">{content}</ItemContent>
+        <ItemContent
+          className={cn("font-semibold", compact ? "text-lg" : "text-xl")}
+        >
+          asdasdasdasdasdasdasdasdasd
+          {content}
+        </ItemContent>
       )}
     </Item>
   );

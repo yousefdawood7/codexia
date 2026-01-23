@@ -1,32 +1,23 @@
 import { FaGithub as GithubIcon } from "react-icons/fa";
 import { SignInButton } from "@clerk/nextjs";
-import { LucideSparkle } from "lucide-react";
+import { LucidePlus, LucideSearch } from "lucide-react";
+import CodexiaLogo from "@/components/CodexiaLogo";
+import { Button } from "@/components/ui/button";
 import CommandButton from "@/components/ui/CommandButton";
-import ProjectCard from "@/features/projects/components/ProjectCard";
-import ProjectHeader from "@/features/projects/components/ProjectHeader";
-import ProjectList from "@/features/projects/components/ProjectList";
+import ProjectList from "@/features/projects/components/project/ProjectList";
+import StickyProjectHeader from "@/features/projects/components/ProjectsPageHeader";
+import ProjectAction from "@/features/projects/components/sidebar/ProjectAction";
+import ProjectsSidebar from "@/features/projects/components/sidebar/ProjectsSidebar";
 
 export default function Page() {
   return (
-    <main className="bg-muted font-poppins flex min-h-svh flex-col items-center justify-center">
-      <SignInButton />
-      <section className="flex w-full max-w-187.5 flex-col gap-7 px-5">
-        <ProjectHeader />
-        <section className="flex w-full gap-2.5">
-          <ProjectCard
-            type="project"
-            icon={<LucideSparkle className="size-7" />}
-            operationContent={<CommandButton operationString="⌘J" />}
-            content="New"
-          />
-          <ProjectCard
-            icon={<GithubIcon className="size-7" />}
-            operationContent={<CommandButton operationString="⌘I" />}
-            content="Import"
-          />
+    <main className="bg-background font-poppins flex min-h-svh">
+      <ProjectsSidebar />
+      <section className="ml-64 flex flex-1 flex-col">
+        <StickyProjectHeader />
+        <section className="flex-1 px-8 py-6">
+          <ProjectList />
         </section>
-
-        <ProjectList />
       </section>
     </main>
   );
