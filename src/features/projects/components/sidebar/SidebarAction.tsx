@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import CommandButton from "@/components/ui/CommandButton";
 
-type ProjectActionProps = {
+type SidebarActionProps = {
   icon: React.ReactNode;
   label: string;
   shortcut?: string;
@@ -9,12 +9,12 @@ type ProjectActionProps = {
   handleClick?: () => void;
 };
 
-export default function ProjectAction({
+export default function SidebarAction({
   icon,
   label,
   shortcut,
   handleClick,
-}: ProjectActionProps) {
+}: SidebarActionProps) {
   return (
     <Button
       onClick={handleClick}

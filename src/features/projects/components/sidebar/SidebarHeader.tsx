@@ -1,6 +1,6 @@
 import CodexiaLogo from "@/components/CodexiaLogo";
 
-export default function ProjectHeader() {
+export default function SidebarHeader() {
   return (
     <header className="flex items-center gap-2.5 px-5 py-5">
       <CodexiaLogo />
