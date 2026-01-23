@@ -39,8 +39,6 @@ export default function ProjectList() {
 
   const [lastUpdatedProject, ...restProjects] = projectItems.slice(0, 6);
 
-  console.log(lastUpdatedProject);
-  console.log(projectItems);
   return (
     <>
       <LastUpdatedProject {...lastUpdatedProject} />
