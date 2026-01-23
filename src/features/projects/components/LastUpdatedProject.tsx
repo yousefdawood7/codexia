@@ -1,6 +1,6 @@
 import { LucideArrowRight } from "lucide-react";
 import { type Doc } from "@/../convex/_generated/dataModel";
-import ProjectCard from "@/features/projects/components/ProjectCard";
+import ProjectCard from "@/features/projects/components/project/ProjectCard";
 import { IMPORT_STATUS } from "@/features/projects/constants";
 import { getFormattedTime } from "@/lib/utils";
 
@@ -15,7 +15,9 @@ export default function LastUpdatedProject({
 
   return (
     <section className="space-y-2">
-      <p className="text-muted-foreground text-lg">Last updated</p>
+      <h3 className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
+        Continue Working
+      </h3>
       <ProjectCard
         title={name}
         footer={getFormattedTime(updatedAt)}
