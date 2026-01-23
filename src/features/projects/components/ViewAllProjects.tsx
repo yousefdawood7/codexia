@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { LucideGlobe } from "lucide-react";
 import { Doc } from "@/../convex/_generated/dataModel";
 import { Button } from "@/components/ui/button";
@@ -11,30 +10,18 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { useCommandPalette } from "@/hooks/useCommandPalette";
 
 type ViewAllProjectsProps = { projects: Doc<"projects">[] };
 
 export default function ViewAllProjects({ projects }: ViewAllProjectsProps) {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((open) => !open);
-      }
-    };
-
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
-
+  const [open, setOpen] = useCommandPalette();
   return (
     <>
       <Button
-        variant={"ghost"}
+        variant={"command"}
         onClick={() => setOpen(true)}
-        className="text-muted-foreground text-lg"
+        className="text-muted-foreground bg-transparent text-lg"
       >
         View all
       </Button>

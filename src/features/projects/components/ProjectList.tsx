@@ -9,7 +9,8 @@ import { Spinner } from "@/components/ui/spinner";
 import LastUpdatedProject from "@/features/projects/components/LastUpdatedProject";
 import ProjectItem from "@/features/projects/components/ProjectItem";
 import ViewAllProjects from "@/features/projects/components/ViewAllProjects";
-import { getCurrentDate, getFormattedTime } from "@/lib/utils";
+import { IMPORT_STATUS } from "@/features/projects/constants";
+import { getFormattedTime } from "@/lib/utils";
 
 export default function ProjectList() {
   const projectItems = useQuery(api.functions.getProjects, {});
@@ -36,14 +37,15 @@ export default function ProjectList() {
       />
     );
 
-  const [lastUpdatedProject] = projectItems.slice(0, 1);
-  const restProjects = projectItems.slice(1, 5);
+  const [lastUpdatedProject, ...restProjects] = projectItems.slice(0, 6);
 
+  console.log(lastUpdatedProject);
+  console.log(projectItems);
   return (
     <>
       <LastUpdatedProject {...lastUpdatedProject} />
 
-      {!!restProjects.length && (
+      {restProjects.length >= 1 && (
         <section className="space-y-5">
           <aside className="flex items-center justify-between">
             <p className="text-muted-foreground text-lg">Recent projects</p>
@@ -52,15 +54,17 @@ export default function ProjectList() {
               <CommandButton operationString="⌘K" />
             </section>
           </aside>
-
-          {restProjects.map((project) => (
-            <ProjectItem
-              key={project._id}
-              icon={Spinner}
-              title={project.name}
-              content={getFormattedTime(project.updatedAt, getCurrentDate())}
-            />
-          ))}
+          <ul>
+            {restProjects.map((project) => (
+              <li key={project._id}>
+                <ProjectItem
+                  icon={IMPORT_STATUS[project.importStatus]}
+                  title={project.name}
+                  content={getFormattedTime(project.updatedAt)}
+                />
+              </li>
+            ))}
+          </ul>
         </section>
       )}
     </>

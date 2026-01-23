@@ -22,7 +22,7 @@ export function useOptimisticProject(
       updatedAt: now,
       name: projectName,
       ownerID: "optimistic",
-      importStatus: "completed" as const,
+      importStatus: "IMPORTING" as const,
     };
 
     localStore.setQuery(api.functions.getProjects, {}, [

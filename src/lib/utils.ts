@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
-import { formatDistance } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 import { twMerge } from "tailwind-merge";
 import {
   adjectives,
@@ -21,5 +21,5 @@ export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
 export const generateRandomNames = () => uniqueNamesGenerator(customConfig);
 
-export const getFormattedTime = (beginDate: number, endDate: number) =>
-  formatDistance(beginDate, endDate, { addSuffix: true });
+export const getFormattedTime = (date: number) =>
+  formatDistanceToNow(date, { addSuffix: true });

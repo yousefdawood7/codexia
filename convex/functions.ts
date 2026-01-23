@@ -15,8 +15,8 @@ export const createProject = mutation({
     return ctx.db.insert("projects", {
       name: projectName,
       updatedAt: Date.now(),
-      ownerID: currentUser.tokenIdentifier,
-      importStatus: "importing",
+      ownerID: currentUser.subject,
+      importStatus: "IMPORTING",
     });
   },
 });
@@ -32,9 +32,7 @@ export const getProjects = query({
 
     return ctx.db
       .query("projects")
-      .withIndex("by_owner", (q) =>
-        q.eq("ownerID", currentUser.tokenIdentifier),
-      )
+      .withIndex("by_owner", (q) => q.eq("ownerID", currentUser.subject))
       .order("desc")
       [numberOfProjects ? "take" : "collect"](numberOfProjects ?? 0); // Argument will be ignored by collect()
   },
