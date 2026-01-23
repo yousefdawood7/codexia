@@ -8,7 +8,7 @@ import CommandButton from "@/components/ui/CommandButton";
 import { Spinner } from "@/components/ui/spinner";
 import LastUpdatedProject from "@/features/projects/components/LastUpdatedProject";
 import ProjectItem from "@/features/projects/components/ProjectItem";
-import { getCurrentDate, getFormatedTime } from "@/lib/utils";
+import { getCurrentDate, getFormattedTime } from "@/lib/utils";
 
 export default function ProjectList() {
   const projectItems = useQuery(api.functions.getProjects, {
@@ -37,14 +37,14 @@ export default function ProjectList() {
       />
     );
 
-  const [lastUpdatedProject] = projectItems?.slice(0, 1);
-  const restProjects = projectItems?.slice(1);
+  const [lastUpdatedProject] = projectItems.slice(0, 1);
+  const restProjects = projectItems.slice(1);
 
   return (
     <>
       <LastUpdatedProject {...lastUpdatedProject} />
 
-      {restProjects.length && (
+      {!!restProjects.length && (
         <section className="space-y-5">
           <aside className="flex items-center justify-between">
             <p className="text-muted-foreground text-lg">Recent projects</p>
@@ -59,7 +59,7 @@ export default function ProjectList() {
               key={project._id}
               icon={Spinner}
               title={project.name}
-              content={getFormatedTime(project.updatedAt, getCurrentDate())}
+              content={getFormattedTime(project.updatedAt, getCurrentDate())}
             />
           ))}
         </section>

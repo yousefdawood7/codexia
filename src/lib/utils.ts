@@ -21,5 +21,5 @@ export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
 export const generateRandomNames = () => uniqueNamesGenerator(customConfig);
 
-export const getFormatedTime = (beginDate: number, endDate: number) =>
+export const getFormattedTime = (beginDate: number, endDate: number) =>
   formatDistance(beginDate, endDate, { addSuffix: true });

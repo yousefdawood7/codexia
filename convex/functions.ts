@@ -10,7 +10,7 @@ export const createProject = mutation({
 
     // prettier-ignore
     if(!currentUser)
-        return false;
+        return null;
 
     return ctx.db.insert("projects", {
       name: projectName,
@@ -28,7 +28,7 @@ export const getProjects = query({
 
     // prettier-ignore
     if(!currentUser)
-        return;
+        return null;
 
     return ctx.db
       .query("projects")
