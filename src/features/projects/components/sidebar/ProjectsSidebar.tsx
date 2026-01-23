@@ -35,7 +35,9 @@ export default function ProjectsSidebar() {
           icon={<LucidePlus className="size-4" />}
           label="New Project"
           shortcut="⌘J"
-          handleClick={() => handleCreateProject(generateRandomNames())}
+          handleClick={() =>
+            handleCreateProject({ projectName: generateRandomNames() })
+          }
         />
         <ProjectAction
           icon={<GithubIcon className="size-4" />}
