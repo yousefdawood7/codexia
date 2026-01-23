@@ -18,7 +18,7 @@ export default function ProjectItem({
           <Icon className="text-muted-foreground size-7" />
           <p className="text-lg">{title}</p>
         </aside>
-        {content}
+        <p className="text-[1rem]">{content}</p>
       </ItemContent>
     </Item>
   );

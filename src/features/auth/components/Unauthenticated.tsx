@@ -2,44 +2,19 @@
 
 import { SignInButton } from "@clerk/nextjs";
 import { Unauthenticated as UnauthenticatedClerk } from "convex/react";
-import { ShieldAlert } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-} from "@/components/ui/item";
+import { LucideShieldAlert } from "lucide-react";
+import Placeholder from "@/components/Placeholder";
 
 export default function Unauthenticated() {
   return (
     <UnauthenticatedClerk>
       <section className="flex min-h-svh items-center justify-center px-1.5">
-        <Item variant="outline" className="bg-muted w-full max-w-[750px]">
-          <ItemMedia className="my-auto">
-            <ShieldAlert className="size-10" />
-          </ItemMedia>
-          <ItemContent>
-            <ItemTitle className="text-xl font-semibold">
-              Unauthorized Access
-            </ItemTitle>
-            <ItemDescription className="text-md">
-              You do not have the necessary permissions to access this page.
-            </ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <Button
-              variant="outline"
-              size="lg"
-              className="text-lg font-semibold"
-              asChild
-            >
-              <SignInButton>Sign In</SignInButton>
-            </Button>
-          </ItemActions>
-        </Item>
+        <Placeholder
+          title="Unauthorized Access"
+          description="You do not have the necessary permissions to access this page"
+          icon={LucideShieldAlert}
+          button={<SignInButton>Sign In</SignInButton>}
+        />
       </section>
     </UnauthenticatedClerk>
   );
