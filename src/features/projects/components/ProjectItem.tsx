@@ -14,11 +14,11 @@ export default function ProjectItem({
   return (
     <Item className="flex flex-row">
       <ItemContent className="text-muted-foreground flex flex-row items-center justify-between text-lg">
-        <aside className="flex items-center gap-3.5">
+        <aside className="flex items-center gap-2">
           <Icon className="text-muted-foreground size-7" />
           <p className="text-lg">{title}</p>
         </aside>
-        {content}
+        <p className="text-[1rem]">{content}</p>
       </ItemContent>
     </Item>
   );

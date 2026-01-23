@@ -5,10 +5,11 @@ export default defineSchema({
   projects: defineTable({
     name: v.string(),
     ownerID: v.string(),
+    updatedAt: v.number(),
     importStatus: v.union(
-      v.literal("importing"),
-      v.literal("completed"),
-      v.literal("failed"),
+      v.literal("IMPORTING"),
+      v.literal("COMPLETED"),
+      v.literal("FAILED"),
     ),
   }).index("by_owner", ["ownerID"]),
 });
