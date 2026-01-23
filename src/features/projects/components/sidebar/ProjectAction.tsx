@@ -1,11 +1,10 @@
 "use client";
 
+import { api } from "@/../convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import CommandButton from "@/components/ui/CommandButton";
 import { useOptimisticProject } from "@/features/projects/hooks/useOptimisticProject";
 import { generateRandomNames } from "@/lib/utils";
-
-import { api } from "../../../../../convex/_generated/api";
 
 type ProjectActionProps = {
   icon: React.ReactNode;

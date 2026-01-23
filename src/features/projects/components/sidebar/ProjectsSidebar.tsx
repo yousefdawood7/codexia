@@ -4,15 +4,13 @@ import { LucidePlus, LucideSearch } from "lucide-react";
 import CodexiaLogo from "@/components/CodexiaLogo";
 import { Button } from "@/components/ui/button";
 import CommandButton from "@/components/ui/CommandButton";
+import ProjectHeader from "@/features/projects/components/project/ProjectHeader";
 import ProjectAction from "@/features/projects/components/sidebar/ProjectAction";
 
 export default function ProjectsSidebar() {
   return (
-    <aside className="bg-sidebar fixed top-0 left-0 flex h-svh w-64 flex-col border-r border-white/5">
-      <header className="flex items-center gap-2.5 px-5 py-5">
-        <CodexiaLogo />
-        <h1 className="text-2xl font-semibold tracking-tight">Codexia</h1>
-      </header>
+    <aside className="bg-sidebar fixed top-0 left-0 flex min-h-svh w-64 flex-col border-r border-white/5">
+      <ProjectHeader />
 
       <aside className="px-3 pb-2">
         <Button
