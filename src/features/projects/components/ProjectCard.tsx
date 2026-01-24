@@ -33,9 +33,9 @@ export default function ProjectCard({
 
   return (
     <Item
-      variant={"outline"}
+      variant="outline"
       className={cn(
-        "bg-accent hover:bg-accent/60 flex w-full transition-colors",
+        "bg-card hover:border-white/20 hover:bg-accent flex w-full transition-colors duration-200",
         footer ? "" : "gap-10",
       )}
       onClick={
@@ -44,12 +44,14 @@ export default function ProjectCard({
               createOptimisticProject({ projectName: generateRandomNames() })
           : undefined
       }
+      role={type === "project" ? "button" : undefined}
+      aria-label={type === "project" ? "Create new project" : "Import from GitHub"}
     >
       <ItemHeader className="flex justify-between">
-        <aside className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
           {icon}
-          {title && <p className="text-xl">{title}</p>}
-        </aside>
+          {title && <span className="text-xl">{title}</span>}
+        </div>
         {operationContent}
       </ItemHeader>
 

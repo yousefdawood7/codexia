@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-} from "@/components/ui/item";
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 
 type PlaceholderProps = {
   title: string;
@@ -22,16 +22,16 @@ export default function Placeholder({
   button,
 }: PlaceholderProps) {
   return (
-    <Item variant="outline" className="bg-muted w-full max-w-187.5">
-      <ItemMedia className="my-auto">
-        <Icon className="size-10" />
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle className="text-xl font-semibold">{title}</ItemTitle>
-        <ItemDescription className="text-md">{description}</ItemDescription>
-      </ItemContent>
+    <Empty className="bg-card border-border max-h-[350px] w-full max-w-187.5 border">
+      <EmptyHeader>
+        <EmptyMedia>
+          <Icon className="text-muted-foreground size-10" />
+        </EmptyMedia>
+        <EmptyTitle className="text-xl font-semibold">{title}</EmptyTitle>
+        <EmptyDescription className="text-base">{description}</EmptyDescription>
+      </EmptyHeader>
       {button && (
-        <ItemActions>
+        <EmptyContent>
           <Button
             variant="outline"
             size="lg"
@@ -40,8 +40,8 @@ export default function Placeholder({
           >
             {button}
           </Button>
-        </ItemActions>
+        </EmptyContent>
       )}
-    </Item>
+    </Empty>
   );
 }

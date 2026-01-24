@@ -1,4 +1,10 @@
-import { Item, ItemContent } from "@/components/ui/item";
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item";
 
 type ProjectItemProps = {
   icon: React.FC<React.ComponentProps<"svg">>;
@@ -12,14 +18,23 @@ export default function ProjectItem({
   content,
 }: ProjectItemProps) {
   return (
-    <Item className="flex flex-row">
-      <ItemContent className="text-muted-foreground flex flex-row items-center justify-between text-lg">
-        <aside className="flex items-center gap-2">
-          <Icon className="text-muted-foreground size-7" />
-          <p className="text-lg">{title}</p>
-        </aside>
-        <p className="text-[1rem]">{content}</p>
-      </ItemContent>
+    <Item
+      className="hover:border-white/15 hover:bg-card/80 flex flex-row transition-colors duration-200"
+      asChild
+    >
+      <article>
+        <ItemMedia>
+          <Icon className="text-muted-foreground size-7" aria-hidden="true" />
+        </ItemMedia>
+        <ItemContent className="flex flex-1 flex-row items-center justify-between">
+          <ItemTitle className="text-muted-foreground text-lg font-normal">
+            {title}
+          </ItemTitle>
+          <ItemDescription className="text-muted-foreground text-base">
+            {content}
+          </ItemDescription>
+        </ItemContent>
+      </article>
     </Item>
   );
 }

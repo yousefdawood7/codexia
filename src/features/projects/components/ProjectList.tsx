@@ -37,22 +37,31 @@ export default function ProjectList() {
       />
     );
 
-  const [lastUpdatedProject, ...restProjects] = projectItems.slice(0, 6);
+  const [lastUpdatedProject, ...restProjects] = projectItems.slice(0, 10);
+  console.log(restProjects);
 
   return (
     <>
       <LastUpdatedProject {...lastUpdatedProject} />
 
       {restProjects.length >= 1 && (
-        <section className="space-y-5">
-          <aside className="flex items-center justify-between">
-            <p className="text-muted-foreground text-lg">Recent projects</p>
-            <section className="flex items-center gap-2.5">
+        <section
+          className="space-y-5"
+          aria-labelledby="recent-projects-heading"
+        >
+          <header className="flex items-center justify-between">
+            <h2
+              id="recent-projects-heading"
+              className="text-muted-foreground text-xs font-medium tracking-wider uppercase"
+            >
+              Recent projects
+            </h2>
+            <div className="flex items-center gap-2.5">
               <ViewAllProjects projects={projectItems} />
               <CommandButton operationString="⌘K" />
-            </section>
-          </aside>
-          <ul>
+            </div>
+          </header>
+          <ul className="space-y-2" role="list">
             {restProjects.map((project) => (
               <li key={project._id}>
                 <ProjectItem
