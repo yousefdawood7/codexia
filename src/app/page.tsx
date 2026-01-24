@@ -88,7 +88,7 @@ export default function Page() {
           className="flex flex-col gap-8 transition-all duration-300 ease-out"
           aria-label="Projects overview"
         >
-          <ProjectHeader />
+          <ProjectHeader isCenter={projectItems.length === 1} />
 
           <nav className="flex gap-3" role="group" aria-label="Quick actions">
             <ProjectCard
@@ -103,7 +103,6 @@ export default function Page() {
               content="Import"
             />
           </nav>
-
           <LastUpdatedProject {...lastUpdatedProject} />
         </section>
 
