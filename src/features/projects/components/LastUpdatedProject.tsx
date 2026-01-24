@@ -19,7 +19,7 @@ export default function LastUpdatedProject({
       <ProjectCard
         title={name}
         footer={getFormattedTime(updatedAt)}
-        icon={<ProjectIcon />}
+        icon={<ProjectIcon className="size-7" />}
         operationContent={
           <LucideArrowRight className="text-muted-foreground" />
         }
