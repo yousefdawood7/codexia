@@ -5,33 +5,33 @@ import { SignInButton } from "@clerk/nextjs";
 import { LucidePlus, LucideSearch } from "lucide-react";
 import { api } from "@/../convex/_generated/api";
 import { useCommandPalette } from "@/contexts/CommandPaletteProvider";
-import SidebarAction from "@/features/projects/components/sidebar/SidebarAction";
-import SidebarHeader from "@/features/projects/components/sidebar/SidebarHeader";
+import ProjectHeader from "@/features/projects/components/project/ProjectHeader";
+import ProjectAction from "@/features/projects/components/sidebar/ProjectAction";
 import { useOptimisticProject } from "@/features/projects/hooks/useOptimisticProject";
 import { generateRandomNames } from "@/lib/utils";
 
-export default function Sidebar() {
+export default function ProjectsSidebar() {
   const { setOpen } = useCommandPalette();
   const handleCreateProject = useOptimisticProject(api.functions.createProject);
 
   return (
     <aside className="bg-sidebar fixed top-0 left-0 flex min-h-svh w-64 flex-col border-r border-white/5">
-      <SidebarHeader />
+      <ProjectHeader />
 
-      <section className="px-3 pb-2">
-        <SidebarAction
+      <aside className="px-3 pb-2">
+        <ProjectAction
           icon={<LucideSearch className="size-4" />}
           label="Search"
           shortcut="⌘K"
           handleClick={() => setOpen(true)}
         />
-      </section>
+      </aside>
 
       <nav className="flex flex-col gap-0.5 px-3 py-2">
         <p className="text-muted-foreground/70 mb-2 px-3 text-xs font-medium tracking-wider uppercase">
           Create
         </p>
-        <SidebarAction
+        <ProjectAction
           icon={<LucidePlus className="size-4" />}
           label="New Project"
           shortcut="⌘J"
@@ -39,7 +39,7 @@ export default function Sidebar() {
             handleCreateProject({ projectName: generateRandomNames() })
           }
         />
-        <SidebarAction
+        <ProjectAction
           icon={<GithubIcon className="size-4" />}
           label="Import from GitHub"
           shortcut="⌘I"
