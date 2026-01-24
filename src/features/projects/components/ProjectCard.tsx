@@ -31,21 +31,22 @@ export default function ProjectCard({
     api.functions.createProject,
   );
 
+  const handleCreateProject = () => {
+    createOptimisticProject({ projectName: generateRandomNames() });
+  };
+
   return (
     <Item
       variant="outline"
-      className={cn(
-        "bg-card hover:border-white/20 hover:bg-accent flex w-full transition-colors duration-200",
-        footer ? "" : "gap-10",
-      )}
-      onClick={
-        type === "project"
-          ? () =>
-              createOptimisticProject({ projectName: generateRandomNames() })
-          : undefined
-      }
+      onClick={type === "project" ? handleCreateProject : undefined}
       role={type === "project" ? "button" : undefined}
-      aria-label={type === "project" ? "Create new project" : "Import from GitHub"}
+      className={cn(
+        "bg-card hover:bg-accent flex w-full transition-colors duration-200 hover:border-white/20",
+        !footer && "gap-10",
+      )}
+      aria-label={
+        type === "project" ? "Create new project" : "Import from GitHub"
+      }
     >
       <ItemHeader className="flex justify-between">
         <div className="flex items-center gap-2">

@@ -118,10 +118,7 @@ export default function Page() {
           aria-hidden={!hasRecentProjects}
         >
           {hasRecentProjects && (
-            <RecentProjectsList
-              projects={restProjects}
-              allProjects={projectItems}
-            />
+            <RecentProjectsList allProjects={projectItems} />
           )}
         </section>
       </div>
