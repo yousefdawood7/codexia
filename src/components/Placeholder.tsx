@@ -22,7 +22,7 @@ export default function Placeholder({
   button,
 }: PlaceholderProps) {
   return (
-    <Item variant="outline" className="w-full max-w-187.5">
+    <Item variant="outline" className="bg-muted w-full max-w-187.5">
       <ItemMedia className="my-auto">
         <Icon className="size-10" />
       </ItemMedia>
