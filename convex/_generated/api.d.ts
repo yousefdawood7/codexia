@@ -8,8 +8,9 @@
  * @module
  */
 
-import type * as dal from "../dal.js";
-import type * as functions from "../functions.js";
+import type * as _shared_dal from "../_shared/dal.js";
+import type * as projects_mutations from "../projects/mutations.js";
+import type * as projects_queries from "../projects/queries.js";
 import type * as types from "../types.js";
 
 import type {
@@ -19,8 +20,9 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  dal: typeof dal;
-  functions: typeof functions;
+  "_shared/dal": typeof _shared_dal;
+  "projects/mutations": typeof projects_mutations;
+  "projects/queries": typeof projects_queries;
   types: typeof types;
 }>;
 

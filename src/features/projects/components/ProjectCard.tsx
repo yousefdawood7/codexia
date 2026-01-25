@@ -28,7 +28,7 @@ export default function ProjectCard({
   operationContent,
 }: ProjectCardProps) {
   const createOptimisticProject = useOptimisticProject(
-    api.functions.createProject,
+    api.projects.mutations.createProject,
   );
 
   const handleCreateProject = () => {

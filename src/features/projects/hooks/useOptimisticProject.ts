@@ -12,7 +12,7 @@ export function useOptimisticProject(
   ).withOptimisticUpdate((localStore, args) => {
     const { projectName } = args;
     const currentProjects =
-      localStore.getQuery(api.functions.getProjects, {}) ?? [];
+      localStore.getQuery(api.projects.queries.getProjects, {}) ?? [];
 
     const now = getCurrentDate();
 
@@ -25,7 +25,7 @@ export function useOptimisticProject(
       importStatus: "IMPORTING" as const,
     };
 
-    localStore.setQuery(api.functions.getProjects, {}, [
+    localStore.setQuery(api.projects.queries.getProjects, {}, [
       optimisticProjectObject,
       ...currentProjects,
     ]);
