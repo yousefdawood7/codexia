@@ -12,7 +12,7 @@ export default function ProjectListDesktop({
 }: ProjectListDesktopProps) {
   return (
     <ul
-      className="hidden max-h-[400px] space-y-2 overflow-y-auto pr-2 lg:block"
+      className="hidden max-h-100 space-y-2 overflow-y-auto pr-2 lg:block"
       role="list"
     >
       {projects.map((project) => (

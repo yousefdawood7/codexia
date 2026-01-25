@@ -1,16 +1,11 @@
 import CodexiaLogo from "@/components/CodexiaLogo";
 import { cn } from "@/lib/utils";
 
-type ProjectHeaderProps = {
-  isCenter?: boolean;
-};
-
-export default function ProjectHeader({ isCenter }: ProjectHeaderProps) {
+export default function ProjectHeader() {
   return (
     <header
       className={cn(
-        "flex items-center justify-center gap-3.5 self-start",
-        isCenter && "self-center",
+        "flex items-center justify-center gap-3.5 self-center lg:self-start",
       )}
     >
       <CodexiaLogo />

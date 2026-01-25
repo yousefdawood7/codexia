@@ -10,7 +10,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { useCommandPalette } from "@/hooks/useCommandPalette";
+import { useCommandPalette } from "@/features/projects/hooks/useCommandPalette";
 
 type ViewAllProjectsProps = { projects: Doc<"projects">[] };
 
