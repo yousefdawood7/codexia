@@ -14,14 +14,19 @@ export default function LastUpdatedProject({
   const ProjectIcon = IMPORT_STATUS[importStatus];
 
   return (
-    <section className="space-y-2">
-      <p className="text-muted-foreground text-lg">Last updated</p>
+    <section className="space-y-3" aria-labelledby="last-updated-heading">
+      <h2
+        id="last-updated-heading"
+        className="text-muted-foreground text-xs font-medium uppercase tracking-wider"
+      >
+        Last updated
+      </h2>
       <ProjectCard
         title={name}
         footer={getFormattedTime(updatedAt)}
-        icon={<ProjectIcon />}
+        icon={<ProjectIcon className="size-7" />}
         operationContent={
-          <LucideArrowRight className="text-muted-foreground" />
+          <LucideArrowRight className="text-muted-foreground" aria-hidden="true" />
         }
       />
     </section>

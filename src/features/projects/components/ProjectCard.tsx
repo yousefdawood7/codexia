@@ -28,28 +28,31 @@ export default function ProjectCard({
   operationContent,
 }: ProjectCardProps) {
   const createOptimisticProject = useOptimisticProject(
-    api.functions.createProject,
+    api.projects.mutations.createProject,
   );
+
+  const handleCreateProject = () => {
+    createOptimisticProject({ projectName: generateRandomNames() });
+  };
 
   return (
     <Item
-      variant={"outline"}
+      variant="outline"
+      onClick={type === "project" ? handleCreateProject : undefined}
+      role={type === "project" ? "button" : undefined}
       className={cn(
-        "bg-accent hover:bg-accent/60 flex w-full transition-colors",
-        footer ? "" : "gap-10",
+        "bg-card hover:bg-accent flex w-full transition-colors duration-200 hover:border-white/20",
+        !footer && "gap-10",
       )}
-      onClick={
-        type === "project"
-          ? () =>
-              createOptimisticProject({ projectName: generateRandomNames() })
-          : undefined
+      aria-label={
+        type === "project" ? "Create new project" : "Import from GitHub"
       }
     >
       <ItemHeader className="flex justify-between">
-        <aside className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
           {icon}
-          {title && <p className="text-xl">{title}</p>}
-        </aside>
+          {title && <span className="text-xl">{title}</span>}
+        </div>
         {operationContent}
       </ItemHeader>
 
