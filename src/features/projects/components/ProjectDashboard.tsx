@@ -16,14 +16,14 @@ export default function ProjectDashboard() {
 
   if (projectItems === undefined) {
     return (
-      <>
+      <section className="flex w-full max-w-187.5 flex-col gap-10">
         <ProjectHeader />
         <Placeholder
           title="Loading projects"
           description="We're still loading your projects, please wait..."
           icon={Spinner}
         />
-      </>
+      </section>
     );
   }
 
@@ -64,7 +64,7 @@ export default function ProjectDashboard() {
           className="flex flex-col gap-8 transition-all duration-300 ease-out"
           aria-label="Projects overview"
         >
-          <ProjectHeader />
+          <ProjectHeader isLeft={hasRecentProjects} />
           <ActionCards />
           <LastUpdatedProject {...lastUpdatedProject} />
         </section>

@@ -1,11 +1,16 @@
 import CodexiaLogo from "@/components/CodexiaLogo";
 import { cn } from "@/lib/utils";
 
-export default function ProjectHeader() {
+type ProjectHeaderProps = {
+  isLeft?: boolean;
+};
+
+export default function ProjectHeader({ isLeft }: ProjectHeaderProps) {
   return (
     <header
       className={cn(
-        "flex items-center justify-center gap-3.5 self-center lg:self-start",
+        "flex items-center justify-center gap-3.5 self-center",
+        isLeft && "lg:self-start",
       )}
     >
       <CodexiaLogo />
