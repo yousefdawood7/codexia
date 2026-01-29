@@ -18,6 +18,7 @@ export default function ProjectListDesktop({
       {projects.map((project) => (
         <li key={project._id}>
           <ProjectItem
+            id={project._id}
             icon={IMPORT_STATUS[project.importStatus]}
             title={project.name}
             content={getFormattedTime(project.updatedAt)}

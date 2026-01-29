@@ -18,6 +18,7 @@ export default function ProjectListMobile({
       {projects.slice(0, MOBILE_PROJECT_LIMIT).map((project) => (
         <li key={project._id}>
           <ProjectItem
+            id={project._id}
             icon={IMPORT_STATUS[project.importStatus]}
             title={project.name}
             content={getFormattedTime(project.updatedAt)}

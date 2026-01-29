@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { Id } from "@/../convex/_generated/dataModel";
 import {
   Item,
   ItemContent,
@@ -7,22 +9,24 @@ import {
 } from "@/components/ui/item";
 
 type ProjectItemProps = {
+  id: Id<"projects">;
   icon: React.FC<React.ComponentProps<"svg">>;
   title: string;
   content: string;
 };
 
 export default function ProjectItem({
-  icon: Icon,
+  id,
   title,
   content,
+  icon: Icon,
 }: ProjectItemProps) {
   return (
     <Item
-      className="hover:border-white/15 hover:bg-card/80 flex flex-row transition-colors duration-200"
+      className="hover:bg-card/80 flex flex-row transition-colors duration-200 hover:border-white/15"
       asChild
     >
-      <article>
+      <Link href={`/project/${id}`}>
         <ItemMedia>
           <Icon className="text-muted-foreground size-7" aria-hidden="true" />
         </ItemMedia>
@@ -34,7 +38,7 @@ export default function ProjectItem({
             {content}
           </ItemDescription>
         </ItemContent>
-      </article>
+      </Link>
     </Item>
   );
 }
