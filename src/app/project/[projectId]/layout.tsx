@@ -1,5 +1,18 @@
-export default function Layout({
+import { Id } from "@/../convex/_generated/dataModel";
+import EditorBreadcrumb from "@/features/editor/components/EditorBreadcrumb";
+
+export default async function Layout({
   children,
+  params,
 }: LayoutProps<"/project/[projectId]">) {
-  return <div>{children}</div>;
+  const { projectId } = (await params) as { projectId: Id<"projects"> };
+  return (
+    <>
+      <header className="bg-primary-foreground border border-b p-2.5">
+        <EditorBreadcrumb projectId={projectId} />
+      </header>
+
+      <main>{children}</main>
+    </>
+  );
 }

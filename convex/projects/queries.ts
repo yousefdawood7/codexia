@@ -19,3 +19,16 @@ export const getProjects = query({
       [numberOfProjects ? "take" : "collect"](numberOfProjects ?? 0); // Argument will be ignored by collect()
   },
 });
+
+export const getProjectById = query({
+  args: { projectId: v.id("projects") },
+  handler: async (ctx, { projectId }) => {
+    const currentUser = await userIdentity(ctx);
+
+    // prettier-ignore
+    if(!currentUser)
+        return null;
+
+    return ctx.db.get("projects", projectId);
+  },
+});
