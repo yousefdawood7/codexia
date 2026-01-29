@@ -2,10 +2,14 @@ import CodexiaLogo from "@/components/CodexiaLogo";
 import { cn } from "@/lib/utils";
 
 type ProjectHeaderProps = {
+  className?: string;
   isLeft?: boolean;
 };
 
-export default function ProjectHeader({ isLeft }: ProjectHeaderProps) {
+export default function ProjectHeader({
+  className,
+  isLeft,
+}: ProjectHeaderProps) {
   return (
     <header
       className={cn(
@@ -13,8 +17,12 @@ export default function ProjectHeader({ isLeft }: ProjectHeaderProps) {
         isLeft && "lg:self-start",
       )}
     >
-      <CodexiaLogo />
-      <h1 className="text-5xl font-semibold">Codexia</h1>
+      <CodexiaLogo
+        title={{
+          text: "Codexia",
+          className: cn("text-5xl font-semibold", className),
+        }}
+      />
     </header>
   );
 }
