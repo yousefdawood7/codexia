@@ -12,7 +12,7 @@ export default async function Layout({
         <EditorBreadcrumb projectId={projectId} />
       </header>
 
-      <main className="flex-1 overflow-hidden">{children}</main>
+      <main className="flex-1">{children}</main>
     </div>
   );
 }
