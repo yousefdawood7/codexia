@@ -7,12 +7,12 @@ export default async function Layout({
 }: LayoutProps<"/project/[projectId]">) {
   const { projectId } = (await params) as { projectId: Id<"projects"> };
   return (
-    <>
-      <header className="bg-primary-foreground border border-b p-2.5">
+    <div className="flex h-svh flex-col">
+      <header className="bg-primary-foreground border-b p-2.5">
         <EditorBreadcrumb projectId={projectId} />
       </header>
 
-      <main>{children}</main>
-    </>
+      <main className="flex-1 overflow-hidden">{children}</main>
+    </div>
   );
 }
