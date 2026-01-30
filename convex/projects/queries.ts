@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { v } from "convex/values";
 
 import { query } from "../_generated/server";
@@ -24,11 +25,19 @@ export const getProjectById = query({
   args: { projectId: v.id("projects") },
   handler: async (ctx, { projectId }) => {
     const currentUser = await userIdentity(ctx);
+    const project = await ctx.db.get("projects", projectId);
 
     // prettier-ignore
     if(!currentUser)
-        return null;
+      return null;
 
-    return ctx.db.get("projects", projectId);
+    // prettier-ignore
+    if (!project)
+      notFound();
+
+    if (project?.ownerID !== currentUser.subject)
+      throw new Error("Unauthorized Access");
+
+    return project;
   },
 });

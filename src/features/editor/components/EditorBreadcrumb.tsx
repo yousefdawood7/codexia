@@ -32,13 +32,16 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
               <CodexiaLogo
                 width={50}
                 height={50}
-                title={{ text: "Codexia", className: "text-2xl font-semibold" }}
+                title={{
+                  text: "Codexia",
+                  className: "text-2xl font-semibold text-foreground",
+                }}
               />
             </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator className="[&>svg]:size-7" />
-        <BreadcrumbPage className="max-w-sm truncate text-xl">
+        <BreadcrumbPage className="max-w-sm truncate text-xl font-semibold">
           {projectName?.name || "Loading..."}
         </BreadcrumbPage>
       </BreadcrumbList>

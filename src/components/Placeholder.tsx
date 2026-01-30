@@ -7,25 +7,33 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
+import { cn } from "@/lib/utils";
 
 type PlaceholderProps = {
   title: string;
   description: string;
   icon: React.FC<React.ComponentProps<"svg">>;
   button?: React.ReactElement;
+  className?: string;
 };
 
 export default function Placeholder({
   title,
   description,
-  icon: Icon,
   button,
+  className,
+  icon: Icon,
 }: PlaceholderProps) {
   return (
-    <Empty className="bg-card border-border max-h-[350px] w-full max-w-187.5 border">
+    <Empty
+      className={cn(
+        "bg-card border-border max-h-87.5 w-full max-w-187.5 border",
+        className,
+      )}
+    >
       <EmptyHeader>
         <EmptyMedia>
-          <Icon className="text-muted-foreground size-10" />
+          <Icon className="text-muted-foreground size-12" />
         </EmptyMedia>
         <EmptyTitle className="text-xl font-semibold">{title}</EmptyTitle>
         <EmptyDescription className="text-base">{description}</EmptyDescription>
