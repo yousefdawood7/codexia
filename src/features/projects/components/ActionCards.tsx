@@ -1,9 +1,8 @@
-"use client";
-
 import { FaGithub as GithubIcon } from "react-icons/fa";
 import { LucideSparkle } from "lucide-react";
 import CommandButton from "@/components/ui/CommandButton";
 import ProjectCard from "@/features/projects/components/ProjectCard";
+import { getShortcut } from "@/lib/utils";
 
 export default function ActionCards() {
   return (
@@ -11,12 +10,16 @@ export default function ActionCards() {
       <ProjectCard
         type="project"
         icon={<LucideSparkle className="size-7" />}
-        operationContent={<CommandButton operationString="⌘J" />}
+        operationContent={
+          <CommandButton operationString={getShortcut("NEW_PROJECT")} />
+        }
         content="New"
       />
       <ProjectCard
         icon={<GithubIcon className="size-7" />}
-        operationContent={<CommandButton operationString="⌘I" />}
+        operationContent={
+          <CommandButton operationString={getShortcut("IMPORT")} />
+        }
         content="Import"
       />
     </nav>
