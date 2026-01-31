@@ -15,16 +15,16 @@ export default function Tab({
   onClick: handleClick,
 }: TabProps) {
   return (
-    <Button
+    <button
       onClick={() => handleClick()}
-      variant={"tab"}
       className={cn(
+        buttonVariants({ variant: "tab" }),
         "text-muted-foreground h-auto",
         className ?? "",
         isActive && buttonVariants({ variant: "active-tab", className }),
       )}
     >
       {children}
-    </Button>
+    </button>
   );
 }
