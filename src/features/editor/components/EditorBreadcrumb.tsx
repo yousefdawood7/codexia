@@ -13,6 +13,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
 
 type EditorBreadcrumbProps = {
   projectId: Id<"projects">;
@@ -28,10 +29,13 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href={"/"} className="flex items-center gap-2">
+            <Link
+              href={"/"}
+              className="hover:bg-accent/50 flex items-center gap-2 rounded-md px-2.5 py-1.5 transition-colors"
+            >
               <CodexiaLogo
-                width={50}
-                height={50}
+                width={45}
+                height={45}
                 title={{
                   text: "Codexia",
                   className: "text-2xl font-semibold text-foreground",

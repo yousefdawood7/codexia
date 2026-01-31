@@ -31,3 +31,6 @@ export const getShortcut = (action: KeyboardShortcut): string => {
   const shortcut = KEYBOARD_SHORTCUTS[action];
   return isMac ? shortcut.mac : shortcut.windows;
 };
+
+export const handleIsActive = (actual: string, currentState: string) =>
+  actual === currentState;
