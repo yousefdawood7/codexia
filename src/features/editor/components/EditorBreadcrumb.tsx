@@ -1,5 +1,7 @@
 "use client";
 
+import React, { useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import Link from "next/link";
 import { useQuery } from "convex/react";
 import { api } from "@/../convex/_generated/api";
@@ -14,15 +16,76 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
+import { useOptimisticRenameProject } from "@/features/projects/hooks/useOptimisticRenameProject";
+import { cn } from "@/lib/utils";
 
 type EditorBreadcrumbProps = {
   projectId: Id<"projects">;
 };
 
 export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
+  const [isRenameActive, setIsRenameActive] = useState<boolean>(false);
+  const ref = useRef<HTMLInputElement | null>(null);
+  const renameProject = useOptimisticRenameProject(
+    api.projects.mutations.renameProject,
+  );
+
   const projectName = useQuery(api.projects.queries.getProjectById, {
     projectId,
   });
+
+  function handleIsActive() {
+    flushSync(() => {
+      setIsRenameActive(true);
+    });
+
+    ref.current?.focus();
+    ref.current?.select();
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    // prettier-ignore
+    if (e.key !== "Enter" && e.key !== "Escape")
+      return;
+
+    if (e.key === "Enter")
+      renameProject({ projectId, newName: e.currentTarget.value });
+
+    setIsRenameActive(false);
+  }
+
+  function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+    setIsRenameActive(false);
+    renameProject({ projectId, newName: e.target.value });
+  }
+
+  const ProjectNameRename = (
+    <input
+      type="text"
+      className="block text-xl font-semibold"
+      defaultValue={projectName?.name}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
+      onSubmit={() => {
+        console.log("CALLED");
+      }}
+      ref={ref}
+    />
+  );
+
+  const projectNameButton = (
+    <Button
+      variant={"ghost"}
+      className="p-0 text-xl font-semibold hover:bg-transparent!"
+      onClick={handleIsActive}
+    >
+      {projectName?.name}
+    </Button>
+  );
+
+  const projectOperation = isRenameActive
+    ? ProjectNameRename
+    : projectNameButton;
 
   return (
     <Breadcrumb>
@@ -45,8 +108,15 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator className="[&>svg]:size-7" />
-        <BreadcrumbPage className="max-w-sm truncate text-xl font-semibold">
-          {projectName?.name || "Loading..."}
+        <BreadcrumbPage
+          // the last check to prevent the truncate from hiding form's ring
+          className={cn("max-w-sm", !isRenameActive && "truncate")}
+        >
+          {projectName?.name ? (
+            projectOperation
+          ) : (
+            <span className="text-xl font-semibold">Loading...</span>
+          )}
         </BreadcrumbPage>
       </BreadcrumbList>
     </Breadcrumb>
