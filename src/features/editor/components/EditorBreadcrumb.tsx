@@ -4,9 +4,11 @@ import React, { useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
 import { useQuery } from "convex/react";
+import { LucideCloudCheck, LucideLoader } from "lucide-react";
 import { api } from "@/../convex/_generated/api";
 import { Id } from "@/../convex/_generated/dataModel";
 import CodexiaLogo from "@/components/CodexiaLogo";
+import Tooltip from "@/components/Tooltip";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -17,7 +19,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { useOptimisticRenameProject } from "@/features/projects/hooks/useOptimisticRenameProject";
-import { cn } from "@/lib/utils";
+import { cn, getFormattedTimeFromNow } from "@/lib/utils";
 
 type EditorBreadcrumbProps = {
   projectId: Id<"projects">;
@@ -30,7 +32,7 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
     api.projects.mutations.renameProject,
   );
 
-  const projectName = useQuery(api.projects.queries.getProjectById, {
+  const project = useQuery(api.projects.queries.getProjectById, {
     projectId,
   });
 
@@ -63,24 +65,37 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
     <input
       type="text"
       className="block text-xl font-semibold"
-      defaultValue={projectName?.name}
+      defaultValue={project?.name}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
-      onSubmit={() => {
-        console.log("CALLED");
-      }}
       ref={ref}
     />
   );
 
   const projectNameButton = (
-    <Button
-      variant={"ghost"}
-      className="p-0 text-xl font-semibold hover:bg-transparent!"
-      onClick={handleIsActive}
-    >
-      {projectName?.name}
-    </Button>
+    <div className="flex items-center gap-2.5">
+      <Button
+        variant={"ghost"}
+        className="p-0 text-xl font-semibold hover:bg-transparent!"
+        onClick={handleIsActive}
+      >
+        {project?.name}
+      </Button>
+
+      {project?.importStatus === "IMPORTING" && (
+        <Tooltip
+          icon={<LucideLoader className="size-5 animate-spin" />}
+          content="Importing"
+        />
+      )}
+
+      {project?.importStatus === "COMPLETED" && (
+        <Tooltip
+          icon={<LucideCloudCheck className="size-5" />}
+          content={getFormattedTimeFromNow(project.updatedAt)}
+        />
+      )}
+    </div>
   );
 
   const projectOperation = isRenameActive
@@ -112,7 +127,7 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
           // the last check to prevent the truncate from hiding form's ring
           className={cn("max-w-sm", !isRenameActive && "truncate")}
         >
-          {projectName?.name ? (
+          {project?.name ? (
             projectOperation
           ) : (
             <span className="text-xl font-semibold">Loading...</span>

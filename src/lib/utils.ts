@@ -22,7 +22,7 @@ export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
 export const generateRandomNames = () => uniqueNamesGenerator(customConfig);
 
-export const getFormattedTime = (date: number) =>
+export const getFormattedTimeFromNow = (date: number) =>
   formatDistanceToNow(date, { addSuffix: true });
 
 export const getShortcut = (action: KeyboardShortcut): string => {

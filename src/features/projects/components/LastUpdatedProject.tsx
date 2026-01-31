@@ -3,7 +3,7 @@ import { LucideArrowRight } from "lucide-react";
 import { type Doc } from "@/../convex/_generated/dataModel";
 import ProjectCard from "@/features/projects/components/ProjectCard";
 import { IMPORT_STATUS } from "@/features/projects/constants";
-import { getFormattedTime } from "@/lib/utils";
+import { getFormattedTimeFromNow } from "@/lib/utils";
 
 type LastUpdatedProjectProps = Doc<"projects">;
 
@@ -26,7 +26,7 @@ export default function LastUpdatedProject({
       <Link href={`/project/${_id}`}>
         <ProjectCard
           title={name}
-          footer={getFormattedTime(updatedAt)}
+          footer={getFormattedTimeFromNow(updatedAt)}
           icon={<ProjectIcon className="size-7" />}
           operationContent={
             <LucideArrowRight

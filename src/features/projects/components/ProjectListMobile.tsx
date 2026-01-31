@@ -4,7 +4,7 @@ import {
   IMPORT_STATUS,
   MOBILE_PROJECT_LIMIT,
 } from "@/features/projects/constants";
-import { getFormattedTime } from "@/lib/utils";
+import { getFormattedTimeFromNow } from "@/lib/utils";
 
 type ProjectListMobileProps = {
   projects: Doc<"projects">[];
@@ -21,7 +21,7 @@ export default function ProjectListMobile({
             id={project._id}
             icon={IMPORT_STATUS[project.importStatus]}
             title={project.name}
-            content={getFormattedTime(project.updatedAt)}
+            content={getFormattedTimeFromNow(project.updatedAt)}
           />
         </li>
       ))}
