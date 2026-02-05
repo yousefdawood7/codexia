@@ -108,7 +108,7 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
             <Link
-              href={"/"}
+              href={"/dashboard"}
               className="hover:bg-accent/50 flex items-center gap-2 rounded-md px-2.5 py-1.5 transition-colors"
             >
               <CodexiaLogo
