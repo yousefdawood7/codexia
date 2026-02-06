@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 import { Check, X } from "lucide-react";
@@ -11,6 +13,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import SectionLabel from "@/components/landing/SectionLabel";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 interface PricingFeature {
   text: string;
@@ -77,14 +81,35 @@ const TIERS: PricingTier[] = [
 ];
 
 export default function PricingSection() {
+  const sectionRef = useScrollReveal<HTMLElement>({
+    targets: "[data-reveal]",
+    blur: 10,
+    y: 28,
+    stagger: 0.12,
+    start: "top 82%",
+  });
+
   return (
-    <section id="pricing" className="py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section
+      ref={sectionRef}
+      id="pricing"
+      className="bg-dot-grid relative overflow-hidden py-24 md:py-32"
+    >
+      {/* Radial glow behind highlighted card */}
+      <div
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        aria-hidden
+      >
+        <div className="bg-foreground/[0.02] h-[500px] w-[400px] rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6">
         {/* Section Header */}
-        <div className="mb-14 text-center md:mb-16">
+        <div data-reveal className="mb-14 text-center md:mb-16">
+          <SectionLabel>Pricing</SectionLabel>
           <h2 className="font-poppins text-3xl font-bold tracking-tight md:text-4xl">
             Simple, transparent{" "}
-            <span className="text-muted-foreground">pricing</span>
+            <span className="text-muted-foreground font-light">pricing</span>
           </h2>
           <p className="text-muted-foreground mx-auto mt-4 max-w-2xl md:text-lg">
             No hidden fees. No surprises. Start free, upgrade when you&apos;re
@@ -97,18 +122,22 @@ export default function PricingSection() {
           {TIERS.map((tier) => (
             <div
               key={tier.name}
+              data-reveal
               className={tier.highlighted ? "md:scale-[1.03]" : ""}
             >
               <Card
-                className={`relative flex h-full flex-col transition-all duration-300 ${
+                className={`group hover:shadow-foreground/[0.02] relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-lg ${
                   tier.highlighted
-                    ? "border-foreground/20 shadow-lg"
-                    : "border-border"
+                    ? "border-foreground/15 shadow-foreground/[0.04] ring-foreground/[0.08] shadow-lg ring-1"
+                    : "border-border hover:border-foreground/10"
                 }`}
               >
+                {/* Top edge glow */}
+                <div className="via-foreground/10 pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent to-transparent" />
+
                 {tier.highlighted && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="font-plex-mono text-xs tracking-wide">
+                    <Badge className="font-plex-mono text-xs tracking-wide shadow-md">
                       Most Popular
                     </Badge>
                   </div>

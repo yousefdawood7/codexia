@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import CTABannerSection from "@/components/landing/CTABannerSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import FooterSection from "@/components/landing/FooterSection";
 import HeroSection from "@/components/landing/HeroSection";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import Navbar from "@/components/landing/Navbar";
 import PricingSection from "@/components/landing/PricingSection";
+import ProductDemoSection from "@/components/landing/ProductDemoSection";
+import TrustBarSection from "@/components/landing/TrustBarSection";
 import { GradientDivider } from "@/components/ui/gradient-divider";
 
 export const metadata: Metadata = {
@@ -24,12 +27,15 @@ export default function LandingPage() {
     <div className="font-poppins bg-background text-foreground">
       <Navbar />
       <HeroSection />
+      <ProductDemoSection />
+      <TrustBarSection />
+      <GradientDivider />
       <FeaturesSection />
       <GradientDivider />
       <HowItWorksSection />
       <GradientDivider />
       <PricingSection />
-      <GradientDivider />
+      <CTABannerSection />
       <FooterSection />
     </div>
   );

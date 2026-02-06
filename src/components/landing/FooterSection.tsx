@@ -22,7 +22,7 @@ const LEGAL_LINKS = [
 
 export default function FooterSection() {
   return (
-    <footer className="border-border border-t">
+    <footer className="bg-noise relative">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {/* Brand */}
@@ -41,7 +41,7 @@ export default function FooterSection() {
 
           {/* Product */}
           <div>
-            <h4 className="font-poppins text-foreground mb-4 text-sm font-semibold">
+            <h4 className="font-plex-mono text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
               Product
             </h4>
             <ul className="space-y-2.5">
@@ -49,9 +49,10 @@ export default function FooterSection() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                    className="group/link text-muted-foreground hover:text-foreground relative text-sm transition-colors"
                   >
                     {link.label}
+                    <span className="bg-foreground absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300 group-hover/link:w-full" />
                   </a>
                 </li>
               ))}
@@ -60,7 +61,7 @@ export default function FooterSection() {
 
           {/* Company */}
           <div>
-            <h4 className="font-poppins text-foreground mb-4 text-sm font-semibold">
+            <h4 className="font-plex-mono text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
               Company
             </h4>
             <ul className="space-y-2.5">
@@ -68,9 +69,10 @@ export default function FooterSection() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                    className="group/link text-muted-foreground hover:text-foreground relative text-sm transition-colors"
                   >
                     {link.label}
+                    <span className="bg-foreground absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300 group-hover/link:w-full" />
                   </a>
                 </li>
               ))}
@@ -79,7 +81,7 @@ export default function FooterSection() {
 
           {/* Legal */}
           <div>
-            <h4 className="font-poppins text-foreground mb-4 text-sm font-semibold">
+            <h4 className="font-plex-mono text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
               Legal
             </h4>
             <ul className="space-y-2.5">
@@ -87,9 +89,10 @@ export default function FooterSection() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                    className="group/link text-muted-foreground hover:text-foreground relative text-sm transition-colors"
                   >
                     {link.label}
+                    <span className="bg-foreground absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300 group-hover/link:w-full" />
                   </a>
                 </li>
               ))}
@@ -106,7 +109,7 @@ export default function FooterSection() {
           </p>
 
           <div className="flex items-center gap-4">
-            <span className="text-muted-foreground/60 text-xs">
+            <span className="font-plex-mono text-muted-foreground/50 text-[10px] tracking-wider">
               Built with Next.js &amp; Convex
             </span>
             <a
