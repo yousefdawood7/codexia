@@ -72,7 +72,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden min-w-[110px] items-center justify-end gap-3 md:flex">
             <SignedOut>
               <SignUpButton mode="modal">
                 <Button size="sm">Get Started</Button>

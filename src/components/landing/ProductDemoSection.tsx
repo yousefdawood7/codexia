@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,8 +8,10 @@ import SectionLabel from "@/components/landing/SectionLabel";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-/* ─── Simulated code lines ─── */
-const CODE_LINES = [
+/* ─── Simulated file contents ─── */
+type CodeLine = { indent: number; text: string; color: string };
+
+const DASHBOARD_LINES: CodeLine[] = [
   {
     indent: 0,
     text: 'import { api } from "@/convex/_generated/api";',
@@ -48,7 +50,55 @@ const CODE_LINES = [
   { indent: 2, text: "</div>", color: "text-white/70" },
   { indent: 1, text: ");", color: "text-white/90" },
   { indent: 0, text: "}", color: "text-white/90" },
-] as const;
+];
+
+const LAYOUT_LINES: CodeLine[] = [
+  {
+    indent: 0,
+    text: 'import { ClerkProvider } from "@clerk/nextjs";',
+    color: "text-white/60",
+  },
+  {
+    indent: 0,
+    text: 'import { ConvexProvider } from "@/providers";',
+    color: "text-white/60",
+  },
+  { indent: 0, text: 'import "@/app/globals.css";', color: "text-white/50" },
+  { indent: 0, text: "", color: "" },
+  { indent: 0, text: "export const metadata = {", color: "text-white/90" },
+  {
+    indent: 1,
+    text: 'title: "Codexia — AI Workspace",',
+    color: "text-white/70",
+  },
+  {
+    indent: 1,
+    text: 'description: "Ship projects faster",',
+    color: "text-white/70",
+  },
+  { indent: 0, text: "};", color: "text-white/90" },
+  { indent: 0, text: "", color: "" },
+  {
+    indent: 0,
+    text: "export default function RootLayout({ children }) {",
+    color: "text-white/90",
+  },
+  { indent: 1, text: "return (", color: "text-white/90" },
+  { indent: 2, text: "<ClerkProvider>", color: "text-white/70" },
+  {
+    indent: 3,
+    text: "<ConvexProvider>{children}</ConvexProvider>",
+    color: "text-white/80",
+  },
+  { indent: 2, text: "</ClerkProvider>", color: "text-white/70" },
+  { indent: 1, text: ");", color: "text-white/90" },
+  { indent: 0, text: "}", color: "text-white/90" },
+];
+
+const TABS = [
+  { id: "dashboard" as const, label: "Dashboard.tsx", lines: DASHBOARD_LINES },
+  { id: "layout" as const, label: "layout.tsx", lines: LAYOUT_LINES },
+];
 
 /* ─── Simulated AI chat messages ─── */
 const CHAT_MESSAGES = [
@@ -69,6 +119,39 @@ const CHAT_MESSAGES = [
 export default function ProductDemoSection() {
   const sectionRef = useRef<HTMLElement>(null!);
   const frameRef = useRef<HTMLDivElement>(null!);
+  const codeContainerRef = useRef<HTMLDivElement>(null!);
+  const [activeTab, setActiveTab] = useState<"dashboard" | "layout">(
+    "dashboard",
+  );
+
+  const animateCodeLines = useCallback(() => {
+    if (!codeContainerRef.current) return;
+    const lines = codeContainerRef.current.querySelectorAll("[data-code-line]");
+    gsap.fromTo(
+      lines,
+      { autoAlpha: 0, x: -8, filter: "blur(2px)" },
+      {
+        autoAlpha: 1,
+        x: 0,
+        filter: "blur(0px)",
+        duration: 0.25,
+        stagger: 0.04,
+        ease: "power2.out",
+      },
+    );
+  }, []);
+
+  const handleTabSwitch = useCallback(
+    (tabId: "dashboard" | "layout") => {
+      if (tabId === activeTab) return;
+      setActiveTab(tabId);
+      // Animate after React re-renders with new lines
+      requestAnimationFrame(() => {
+        animateCodeLines();
+      });
+    },
+    [activeTab, animateCodeLines],
+  );
 
   useGSAP(
     () => {
@@ -194,7 +277,7 @@ export default function ProductDemoSection() {
             </div>
             {/* URL bar */}
             <div className="font-plex-mono bg-background/60 text-foreground/40 flex-1 rounded-md px-3 py-1 text-center text-[11px]">
-              localhost:3000/dashboard
+              codexia.yousefdawood.me/dashboard
             </div>
             <div className="w-[46px]" />
           </div>
@@ -204,20 +287,33 @@ export default function ProductDemoSection() {
             {/* Code Editor Pane */}
             <div className="border-border/30 bg-[oklch(0.13_0_0)] p-5 md:border-r">
               {/* Tab bar */}
-              <div className="mb-4 flex items-center gap-3">
-                <div className="font-plex-mono rounded-md bg-white/10 px-3 py-1 text-[11px] text-white/70">
-                  Dashboard.tsx
-                </div>
-                <div className="font-plex-mono px-3 py-1 text-[11px] text-white/30">
-                  layout.tsx
-                </div>
+              <div className="mb-4 flex items-center gap-1">
+                {TABS.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabSwitch(tab.id)}
+                    className={`font-plex-mono rounded-md px-3 py-1 text-[11px] transition-colors duration-200 ${
+                      activeTab === tab.id
+                        ? "bg-white/10 text-white/70"
+                        : "text-white/30 hover:text-white/50"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
 
               {/* Code content */}
-              <div className="font-plex-mono space-y-0.5 text-[12px] leading-[1.7]">
-                {CODE_LINES.map((line, i) => (
+              <div
+                ref={codeContainerRef}
+                className="font-plex-mono min-h-[340px] space-y-0.5 text-[12px] leading-[1.7]"
+              >
+                {(activeTab === "dashboard"
+                  ? DASHBOARD_LINES
+                  : LAYOUT_LINES
+                ).map((line, i, arr) => (
                   <div
-                    key={i}
+                    key={`${activeTab}-${i}`}
                     data-code-line
                     className="flex"
                     style={{ paddingLeft: `${line.indent * 16}px` }}
@@ -228,7 +324,7 @@ export default function ProductDemoSection() {
                     </span>
                     <span className={line.color}>{line.text}</span>
                     {/* Blinking cursor on last code line */}
-                    {i === CODE_LINES.length - 1 && (
+                    {i === arr.length - 1 && (
                       <span
                         data-cursor
                         className="ml-0.5 inline-block h-[14px] w-[1.5px] translate-y-[2px] bg-white/70"

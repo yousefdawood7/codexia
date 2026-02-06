@@ -7,7 +7,6 @@ import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import Navbar from "@/components/landing/Navbar";
 import PricingSection from "@/components/landing/PricingSection";
 import ProductDemoSection from "@/components/landing/ProductDemoSection";
-import TrustBarSection from "@/components/landing/TrustBarSection";
 import { GradientDivider } from "@/components/ui/gradient-divider";
 
 export const metadata: Metadata = {
@@ -28,7 +27,6 @@ export default function LandingPage() {
       <Navbar />
       <HeroSection />
       <ProductDemoSection />
-      <TrustBarSection />
       <GradientDivider />
       <FeaturesSection />
       <GradientDivider />

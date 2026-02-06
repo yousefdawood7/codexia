@@ -101,7 +101,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-background relative flex h-screen w-full items-center justify-center overflow-hidden"
+      className="bg-background relative flex h-svh w-full items-center justify-center overflow-hidden"
     >
       {/* CPPN Shader Background */}
       <NeuralShaderBackground />

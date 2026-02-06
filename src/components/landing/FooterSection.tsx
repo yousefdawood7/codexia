@@ -1,5 +1,5 @@
+import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
-import { Github } from "lucide-react";
 import CodexiaLogo from "@/components/CodexiaLogo";
 import { Separator } from "@/components/ui/separator";
 
@@ -103,25 +103,24 @@ export default function FooterSection() {
         <Separator className="my-8" />
 
         {/* Bottom Bar */}
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-muted-foreground text-sm">
-            &copy; {new Date().getFullYear()} Codexia. All rights reserved.
-          </p>
-
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-3">
+          <div className="flex items-center gap-3">
             <span className="font-plex-mono text-muted-foreground/50 text-[10px] tracking-wider">
-              Built with Next.js &amp; Convex
+              Built by Yousef Dawood
             </span>
             <a
-              href="https://github.com"
+              href="https://x.com/YousefDawood16"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="GitHub"
+              aria-label="X (Twitter)"
             >
-              <Github className="size-4" />
+              <FaXTwitter className="size-4" />
             </a>
           </div>
+          <p className="text-muted-foreground/40 text-xs">
+            &copy; {new Date().getFullYear()} Codexia. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

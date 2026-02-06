@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 import { Check, X } from "lucide-react";
+import SectionLabel from "@/components/landing/SectionLabel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import SectionLabel from "@/components/landing/SectionLabel";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
 interface PricingFeature {
@@ -126,7 +126,7 @@ export default function PricingSection() {
               className={tier.highlighted ? "md:scale-[1.03]" : ""}
             >
               <Card
-                className={`group hover:shadow-foreground/[0.02] relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-lg ${
+                className={`group hover:shadow-foreground/[0.02] relative flex h-full flex-col transition-all duration-300 hover:shadow-lg ${tier.highlighted ? "overflow-visible" : "overflow-hidden"} ${
                   tier.highlighted
                     ? "border-foreground/15 shadow-foreground/[0.04] ring-foreground/[0.08] shadow-lg ring-1"
                     : "border-border hover:border-foreground/10"
