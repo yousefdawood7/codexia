@@ -105,7 +105,7 @@ export default function FooterSection() {
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-center gap-3">
           <div className="flex items-center gap-3">
-            <span className="font-plex-mono text-muted-foreground/50 text-[10px] tracking-wider">
+            <span className="font-plex-mono text-muted-foreground/50 text-sm tracking-wider">
               Built by Yousef Dawood
             </span>
             <a
@@ -118,7 +118,7 @@ export default function FooterSection() {
               <FaXTwitter className="size-4" />
             </a>
           </div>
-          <p className="text-muted-foreground/40 text-xs">
+          <p className="text-muted-foreground/40 text-sm">
             &copy; {new Date().getFullYear()} Codexia. All rights reserved.
           </p>
         </div>

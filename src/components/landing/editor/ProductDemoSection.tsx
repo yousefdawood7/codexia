@@ -4,122 +4,20 @@ import { useCallback, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  CHAT_MESSAGES,
+  DASHBOARD_CODE,
+  LAYOUT_CODE,
+  TABS,
+} from "@/components/landing/editor/constants";
 import SectionLabel from "@/components/landing/SectionLabel";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-/* ─── Simulated file contents ─── */
-type CodeLine = { indent: number; text: string; color: string };
-
-const DASHBOARD_LINES: CodeLine[] = [
-  {
-    indent: 0,
-    text: 'import { api } from "@/convex/_generated/api";',
-    color: "text-white/60",
-  },
-  {
-    indent: 0,
-    text: 'import { useQuery } from "convex/react";',
-    color: "text-white/60",
-  },
-  { indent: 0, text: "", color: "" },
-  {
-    indent: 0,
-    text: "export default function Dashboard() {",
-    color: "text-white/90",
-  },
-  {
-    indent: 1,
-    text: "const projects = useQuery(api.projects.list);",
-    color: "text-white/70",
-  },
-  { indent: 0, text: "", color: "" },
-  { indent: 1, text: "return (", color: "text-white/90" },
-  {
-    indent: 2,
-    text: '<div className="grid grid-cols-3 gap-4">',
-    color: "text-white/70",
-  },
-  { indent: 3, text: "{projects?.map((p) => (", color: "text-white/60" },
-  {
-    indent: 4,
-    text: "<ProjectCard key={p._id} project={p} />",
-    color: "text-white/80",
-  },
-  { indent: 3, text: "))}", color: "text-white/60" },
-  { indent: 2, text: "</div>", color: "text-white/70" },
-  { indent: 1, text: ");", color: "text-white/90" },
-  { indent: 0, text: "}", color: "text-white/90" },
-];
-
-const LAYOUT_LINES: CodeLine[] = [
-  {
-    indent: 0,
-    text: 'import { ClerkProvider } from "@clerk/nextjs";',
-    color: "text-white/60",
-  },
-  {
-    indent: 0,
-    text: 'import { ConvexProvider } from "@/providers";',
-    color: "text-white/60",
-  },
-  { indent: 0, text: 'import "@/app/globals.css";', color: "text-white/50" },
-  { indent: 0, text: "", color: "" },
-  { indent: 0, text: "export const metadata = {", color: "text-white/90" },
-  {
-    indent: 1,
-    text: 'title: "Codexia — AI Workspace",',
-    color: "text-white/70",
-  },
-  {
-    indent: 1,
-    text: 'description: "Ship projects faster",',
-    color: "text-white/70",
-  },
-  { indent: 0, text: "};", color: "text-white/90" },
-  { indent: 0, text: "", color: "" },
-  {
-    indent: 0,
-    text: "export default function RootLayout({ children }) {",
-    color: "text-white/90",
-  },
-  { indent: 1, text: "return (", color: "text-white/90" },
-  { indent: 2, text: "<ClerkProvider>", color: "text-white/70" },
-  {
-    indent: 3,
-    text: "<ConvexProvider>{children}</ConvexProvider>",
-    color: "text-white/80",
-  },
-  { indent: 2, text: "</ClerkProvider>", color: "text-white/70" },
-  { indent: 1, text: ");", color: "text-white/90" },
-  { indent: 0, text: "}", color: "text-white/90" },
-];
-
-const TABS = [
-  { id: "dashboard" as const, label: "Dashboard.tsx", lines: DASHBOARD_LINES },
-  { id: "layout" as const, label: "layout.tsx", lines: LAYOUT_LINES },
-];
-
-/* ─── Simulated AI chat messages ─── */
-const CHAT_MESSAGES = [
-  {
-    role: "user" as const,
-    text: "Add a search bar to filter projects by name",
-  },
-  {
-    role: "ai" as const,
-    text: "I'll add a search input with real-time filtering. Adding a useState for the query and filtering the projects array...",
-  },
-  {
-    role: "ai" as const,
-    text: "Done! Added a search bar with debounced filtering. The projects now filter as you type. Want me to add sorting options too?",
-  },
-] as const;
-
 export default function ProductDemoSection() {
-  const sectionRef = useRef<HTMLElement>(null!);
-  const frameRef = useRef<HTMLDivElement>(null!);
-  const codeContainerRef = useRef<HTMLDivElement>(null!);
+  const sectionRef = useRef<HTMLElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const codeContainerRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<"dashboard" | "layout">(
     "dashboard",
   );
@@ -240,6 +138,7 @@ export default function ProductDemoSection() {
       ref={sectionRef}
       className="bg-dot-grid relative overflow-hidden py-20 md:py-28"
     >
+      
       {/* Subtle radial glow */}
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -308,30 +207,29 @@ export default function ProductDemoSection() {
                 ref={codeContainerRef}
                 className="font-plex-mono min-h-[340px] space-y-0.5 text-[12px] leading-[1.7]"
               >
-                {(activeTab === "dashboard"
-                  ? DASHBOARD_LINES
-                  : LAYOUT_LINES
-                ).map((line, i, arr) => (
-                  <div
-                    key={`${activeTab}-${i}`}
-                    data-code-line
-                    className="flex"
-                    style={{ paddingLeft: `${line.indent * 16}px` }}
-                  >
-                    {/* Line number */}
-                    <span className="mr-4 inline-block w-5 text-right text-white/15 select-none">
-                      {i + 1}
-                    </span>
-                    <span className={line.color}>{line.text}</span>
-                    {/* Blinking cursor on last code line */}
-                    {i === arr.length - 1 && (
-                      <span
-                        data-cursor
-                        className="ml-0.5 inline-block h-[14px] w-[1.5px] translate-y-[2px] bg-white/70"
-                      />
-                    )}
-                  </div>
-                ))}
+                {(activeTab === "dashboard" ? DASHBOARD_CODE : LAYOUT_CODE).map(
+                  (line, i, arr) => (
+                    <div
+                      key={`${activeTab}-${i}`}
+                      data-code-line
+                      className="flex"
+                      style={{ paddingLeft: `${line.indent * 16}px` }}
+                    >
+                      {/* Line number */}
+                      <span className="mr-4 inline-block w-5 text-right text-white/15 select-none">
+                        {i + 1}
+                      </span>
+                      <span className={line.color}>{line.text}</span>
+                      {/* Blinking cursor on last code line */}
+                      {i === arr.length - 1 && (
+                        <span
+                          data-cursor
+                          className="ml-0.5 inline-block h-[14px] w-[1.5px] translate-y-[2px] bg-white/70"
+                        />
+                      )}
+                    </div>
+                  ),
+                )}
               </div>
             </div>
 

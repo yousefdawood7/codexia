@@ -193,3 +193,18 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-border rounded-full border-[1px] border-solid border-transparent bg-clip-padding;
 }
+
+code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115, 138, 148, 0.4);
+}
