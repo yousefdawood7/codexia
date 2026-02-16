@@ -7,27 +7,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-interface ScrollRevealOptions {
-  /** Elements to animate — CSS selector scoped to the container */
+type ScrollRevealOptions = {
   targets: string;
-  /** Blur intensity in px (default: 8) */
   blur?: number;
-  /** Y offset in px (default: 24) */
   y?: number;
-  /** Animation duration in seconds (default: 0.8) */
   duration?: number;
-  /** Stagger between elements in seconds (default: 0.1) */
   stagger?: number;
-  /** ScrollTrigger start position (default: "top 85%") */
   start?: string;
-  /** Delay before animation starts in seconds (default: 0) */
   delay?: number;
-}
+};
 
-/**
- * Reusable GSAP ScrollTrigger hook extending the hero's blur-to-focus animation language.
- * Returns a ref to attach to the container element.
- */
 export function useScrollReveal<T extends HTMLElement = HTMLElement>(
   options: ScrollRevealOptions,
 ) {

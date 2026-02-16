@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 import { Check, X } from "lucide-react";
-import SectionLabel from "@/components/landing/SectionLabel";
+import SectionHeader from "@/components/landing/SectionHeader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,12 +16,12 @@ import {
 } from "@/components/ui/card";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-interface PricingFeature {
+type PricingFeature = {
   text: string;
   included: boolean;
-}
+};
 
-interface PricingTier {
+type PricingTier = {
   name: string;
   price: string;
   period: string;
@@ -29,7 +29,7 @@ interface PricingTier {
   features: PricingFeature[];
   cta: string;
   highlighted?: boolean;
-}
+};
 
 const TIERS: PricingTier[] = [
   {
@@ -95,6 +95,7 @@ export default function PricingSection() {
       id="pricing"
       className="bg-dot-grid relative overflow-hidden py-24 md:py-32"
     >
+      {/* Subtle Radial Glow on most popular pricing plan */}
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         aria-hidden
@@ -103,18 +104,11 @@ export default function PricingSection() {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">
-        {/* Section Header */}
-        <div data-reveal className="mb-14 text-center md:mb-16">
-          <SectionLabel>Pricing</SectionLabel>
-          <h2 className="font-poppins text-3xl font-bold tracking-tight md:text-4xl">
-            Simple, transparent{" "}
-            <span className="text-muted-foreground font-light">pricing</span>
-          </h2>
-          <p className="text-muted-foreground mx-auto mt-4 max-w-2xl md:text-lg">
-            No hidden fees. No surprises. Start free, upgrade when you&apos;re
-            ready.
-          </p>
-        </div>
+        <SectionHeader
+          subTitle="Pricing"
+          title={{ text: "pricing", highlight: "Simple, transparent" }}
+          description="No hidden fees. No surprises. Start free, upgrade when you're ready."
+        />
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-3">
@@ -185,7 +179,7 @@ export default function PricingSection() {
                   </ul>
                 </CardContent>
 
-                <CardFooter>
+                <CardFooter className="min-h-10.5">
                   <SignedOut>
                     <SignUpButton mode="modal">
                       <Button

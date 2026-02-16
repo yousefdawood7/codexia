@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Bot, FolderPlus, Rocket } from "lucide-react";
-import SectionLabel from "@/components/landing/SectionLabel";
+import SectionHeader from "@/components/landing/SectionHeader";
 import { useHowItWorksAnimate } from "@/hooks/useHowItWorksAnimate";
 
 const STEPS = [
@@ -51,19 +51,11 @@ export default function HowItWorksSection() {
       />
 
       <div className="relative mx-auto flex max-w-5xl flex-col gap-3.5 px-6">
-        {/* Section Header */}
-        <div data-hw-header className="mb-16 text-center">
-          <SectionLabel>Workflow</SectionLabel>
-          <h2 className="font-poppins text-3xl font-bold tracking-tight md:text-4xl">
-            From idea to reality{" "}
-            <span className="text-muted-foreground font-light">
-              in three steps
-            </span>
-          </h2>
-          <p className="text-muted-foreground mx-auto mt-4 max-w-2xl md:text-lg">
-            No complicated setup. No steep learning curve. Just start building.
-          </p>
-        </div>
+        <SectionHeader
+          subTitle="Workflow"
+          title={{ text: "in three steps", highlight: "From idea to reality" }}
+          description="No complicated setup. No steep learning curve. Just start building."
+        />
 
         {/* Steps */}
         <div className="relative grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
