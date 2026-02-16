@@ -63,22 +63,6 @@ export default function HowItWorksSection() {
         });
       }
 
-      /* ── Connecting line draw ── */
-      const line = sectionRef.current.querySelector("[data-hw-line]");
-      if (line) {
-        gsap.set(line, { scaleX: 0, transformOrigin: "left center" });
-        gsap.to(line, {
-          scaleX: 1,
-          duration: 1.2,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            once: true,
-          },
-        });
-      }
-
       /* ── Step cards stagger ── */
       const steps = sectionRef.current.querySelectorAll("[data-hw-step]");
       gsap.set(steps, { autoAlpha: 0, y: 28, filter: "blur(8px)" });
@@ -117,7 +101,7 @@ export default function HowItWorksSection() {
         }}
       />
 
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="relative mx-auto flex max-w-5xl flex-col gap-3.5 px-6">
         {/* Section Header */}
         <div data-hw-header className="mb-16 text-center">
           <SectionLabel>Workflow</SectionLabel>
@@ -134,17 +118,6 @@ export default function HowItWorksSection() {
 
         {/* Steps */}
         <div className="relative grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
-          {/* Connecting line (desktop only) — animated */}
-          <div
-            className="pointer-events-none absolute top-14 right-[16.67%] left-[16.67%] hidden h-px md:block"
-            aria-hidden="true"
-          >
-            <div
-              data-hw-line
-              className="from-border via-foreground/15 to-border h-full w-full bg-linear-to-r"
-            />
-          </div>
-
           {STEPS.map((step) => {
             const Icon = step.icon;
             return (
