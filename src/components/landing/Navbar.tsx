@@ -26,11 +26,12 @@ export default function Navbar() {
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
+    // prettier-ignore
+    if (mobileOpen) 
       document.body.style.overflow = "hidden";
-    } else {
+    else 
       document.body.style.overflow = "";
-    }
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -42,7 +43,7 @@ export default function Navbar() {
         className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-background/80 border-border border-b backdrop-blur-md"
-            : "bg-transparent"
+            : "border-none bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
