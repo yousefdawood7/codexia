@@ -4,13 +4,8 @@ import { useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { SplitText } from "gsap/SplitText";
 import { Button } from "@/components/ui/button";
 import { useHeroAnimate } from "@/hooks/useHeroAnimate";
-
-gsap.registerPlugin(SplitText, useGSAP);
 
 // Dynamic import — Three.js Canvas requires browser APIs, cannot SSR
 const NeuralShaderBackground = dynamic(
