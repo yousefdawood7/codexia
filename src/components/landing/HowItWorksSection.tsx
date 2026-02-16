@@ -1,13 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bot, FolderPlus, Rocket } from "lucide-react";
 import SectionLabel from "@/components/landing/SectionLabel";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { useHowItWorksAnimate } from "@/hooks/useHowItWorksAnimate";
 
 const STEPS = [
   {
@@ -35,54 +31,7 @@ const STEPS = [
 
 export default function HowItWorksSection() {
   const sectionRef = useRef<HTMLElement>(null!);
-
-  useGSAP(
-    () => {
-      if (!sectionRef.current) return;
-
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-      if (prefersReducedMotion) return;
-
-      /* ── Section header ── */
-      const header = sectionRef.current.querySelector("[data-hw-header]");
-      if (header) {
-        gsap.set(header, { autoAlpha: 0, y: 24, filter: "blur(10px)" });
-        gsap.to(header, {
-          autoAlpha: 1,
-          y: 0,
-          filter: "blur(0px)",
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 82%",
-            once: true,
-          },
-        });
-      }
-
-      /* ── Step cards stagger ── */
-      const steps = sectionRef.current.querySelectorAll("[data-hw-step]");
-      gsap.set(steps, { autoAlpha: 0, y: 28, filter: "blur(8px)" });
-      gsap.to(steps, {
-        autoAlpha: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.7,
-        stagger: 0.15,
-        ease: "power3.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          once: true,
-        },
-      });
-    },
-    { scope: sectionRef },
-  );
+  useHowItWorksAnimate({ sectionRef });
 
   return (
     <section
@@ -127,7 +76,7 @@ export default function HowItWorksSection() {
                 className="relative flex flex-col items-center text-center"
               >
                 {/* Large watermark number */}
-                <span className="font-plex-mono text-foreground/[0.06] pointer-events-none absolute -top-6 text-7xl font-bold blur-[1px] select-none md:text-8xl">
+                <span className="font-plex-mono text-foreground/6 pointer-events-none absolute -top-6 text-7xl font-bold blur-[3px] select-none md:text-8xl">
                   {step.number}
                 </span>
 
