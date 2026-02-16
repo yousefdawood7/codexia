@@ -109,7 +109,7 @@ export default function FeaturesSection() {
 
                   {/* Decorative element for hero card */}
                   {feature.tall && (
-                    <div className="font-plex-mono mt-4 rounded-md bg-white/3 p-3 text-[11px] leading-relaxed text-white/30 ring-1 ring-white/6">
+                    <div className="mt-4 rounded-md bg-white/3 p-3 text-[11px] leading-relaxed text-white/30 ring-1 ring-white/6">
                       <span className="text-white/50">{">"}</span>{" "}
                       <span className="text-white/40">
                         Add a search bar to filter projects...

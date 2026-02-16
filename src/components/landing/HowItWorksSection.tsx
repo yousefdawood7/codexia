@@ -68,7 +68,7 @@ export default function HowItWorksSection() {
                 className="relative flex flex-col items-center text-center"
               >
                 {/* Large watermark number */}
-                <span className="font-plex-mono text-foreground/6 pointer-events-none absolute -top-6 text-7xl font-bold blur-[3px] select-none md:text-8xl">
+                <span className="text-foreground/6 pointer-events-none absolute -top-6 text-7xl font-bold blur-[3px] select-none md:text-8xl">
                   {step.number}
                 </span>
 

@@ -113,7 +113,7 @@ export default function HeroSection() {
           ref={badgeRef}
           className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm"
         >
-          <span className="font-plex-mono text-[10px] font-light tracking-[0.08em] text-white/70 uppercase">
+          <span className="text-[10px] font-light tracking-[0.08em] text-white/70 uppercase">
             AI-Powered
           </span>
           <span className="h-1 w-1 rounded-full bg-white/40" />

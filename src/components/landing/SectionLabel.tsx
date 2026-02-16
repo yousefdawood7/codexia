@@ -12,7 +12,7 @@ export default function SectionLabel({
   return (
     <span
       className={cn(
-        "font-plex-mono text-muted-foreground mb-4 inline-block text-sm font-medium tracking-[0.2em] uppercase",
+        "text-muted-foreground mb-4 inline-block text-sm font-medium tracking-[0.2em] uppercase",
         className,
       )}
     >

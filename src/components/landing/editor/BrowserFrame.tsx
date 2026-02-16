@@ -31,7 +31,7 @@ export default function BrowserFrame({
               <button
                 key={tab.id}
                 onClick={() => handleTabSwitch(tab.id)}
-                className={`font-plex-mono rounded-md px-3 py-1 text-[11px] transition-colors duration-200 ${
+                className={`rounded-md px-3 py-1 text-[11px] transition-colors duration-200 ${
                   activeTab === tab.id
                     ? "bg-white/10 text-white/70"
                     : "text-white/30 hover:text-white/50"
@@ -43,7 +43,7 @@ export default function BrowserFrame({
           </div>
 
           {/* Code content */}
-          <div className="font-plex-mono min-h-85 space-y-0.5 text-[12px] leading-[1.7]">
+          <div className="min-h-85 space-y-0.5 text-[12px] leading-[1.7]">
             <CodeSnippet currentTab={activeTab} />
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function BrowserFrame({
             <div className="flex size-6 items-center justify-center rounded-full bg-white/10">
               <span className="text-[10px] text-white/60">AI</span>
             </div>
-            <span className="font-plex-mono text-[11px] font-medium text-white/50">
+            <span className="text-[11px] font-medium text-white/50">
               Codexia Assistant
             </span>
           </div>
@@ -79,7 +79,7 @@ export default function BrowserFrame({
 
           {/* Input bar */}
           <div className="mt-4 flex items-center gap-2 rounded-lg bg-white/4 px-3 py-2.5">
-            <span className="font-plex-mono text-[11px] text-white/25">
+            <span className="text-[11px] text-white/25">
               Ask Codexia anything...
             </span>
           </div>

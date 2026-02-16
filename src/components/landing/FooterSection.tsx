@@ -41,7 +41,7 @@ export default function FooterSection() {
 
           {/* Product */}
           <div>
-            <h4 className="font-plex-mono text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
+            <h4 className="text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
               Product
             </h4>
             <ul className="space-y-2.5">
@@ -61,7 +61,7 @@ export default function FooterSection() {
 
           {/* Company */}
           <div>
-            <h4 className="font-plex-mono text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
+            <h4 className="text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
               Company
             </h4>
             <ul className="space-y-2.5">
@@ -81,7 +81,7 @@ export default function FooterSection() {
 
           {/* Legal */}
           <div>
-            <h4 className="font-plex-mono text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
+            <h4 className="text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
               Legal
             </h4>
             <ul className="space-y-2.5">
@@ -105,7 +105,7 @@ export default function FooterSection() {
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-center gap-3">
           <div className="flex items-center gap-3">
-            <span className="font-plex-mono text-muted-foreground/50 text-sm tracking-wider">
+            <span className="text-muted-foreground/50 text-sm tracking-wider">
               Built by Yousef Dawood
             </span>
             <a

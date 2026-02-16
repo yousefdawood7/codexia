@@ -10,7 +10,7 @@ export default function BrowserBar({ url }: BrowserBarProps) {
         <div className="size-2.5 rounded-full bg-white/10 dark:bg-white/15" />
         <div className="size-2.5 rounded-full bg-white/10 dark:bg-white/15" />
       </div>
-      <div className="font-plex-mono bg-background/60 text-foreground/40 flex-1 rounded-md px-3 py-1 text-center text-[11px]">
+      <div className="bg-background/60 text-foreground/40 flex-1 rounded-md px-3 py-1 text-center text-[11px]">
         {url}
       </div>
       <div className="w-11.5" />

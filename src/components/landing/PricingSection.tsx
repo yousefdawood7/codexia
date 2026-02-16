@@ -130,7 +130,7 @@ export default function PricingSection() {
 
                 {tier.highlighted && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="font-plex-mono text-xs tracking-wide shadow-md">
+                    <Badge className="text-xs tracking-wide shadow-md">
                       Most Popular
                     </Badge>
                   </div>

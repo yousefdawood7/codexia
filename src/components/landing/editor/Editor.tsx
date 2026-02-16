@@ -80,7 +80,7 @@ export default function Editor() {
         />
 
         {/* Caption */}
-        <p className="text-muted-foreground/60 font-plex-mono mt-6 text-center text-[11px] tracking-wide">
+        <p className="text-muted-foreground/60 mt-6 text-center text-[11px] tracking-wide">
           Code + AI chat — your ideas, realized instantly.
         </p>
       </div>
