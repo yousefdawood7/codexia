@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useScrollReveal } from "@/lib/useScrollReveal";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface PricingFeature {
   text: string;
@@ -95,12 +95,11 @@ export default function PricingSection() {
       id="pricing"
       className="bg-dot-grid relative overflow-hidden py-24 md:py-32"
     >
-      {/* Radial glow behind highlighted card */}
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         aria-hidden
       >
-        <div className="bg-foreground/[0.02] h-[500px] w-[400px] rounded-full blur-3xl" />
+        <div className="bg-foreground/2 h-125 w-100 rounded-full blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">
@@ -126,9 +125,9 @@ export default function PricingSection() {
               className={tier.highlighted ? "md:scale-[1.03]" : ""}
             >
               <Card
-                className={`group hover:shadow-foreground/[0.02] relative flex h-full flex-col transition-all duration-300 hover:shadow-lg ${tier.highlighted ? "overflow-visible" : "overflow-hidden"} ${
+                className={`group hover:shadow-foreground/2 relative flex h-full flex-col transition-all duration-300 hover:shadow-lg ${tier.highlighted ? "overflow-visible" : "overflow-hidden"} ${
                   tier.highlighted
-                    ? "border-foreground/15 shadow-foreground/[0.04] ring-foreground/[0.08] shadow-lg ring-1"
+                    ? "border-foreground/15 shadow-foreground/4 ring-foreground/8 shadow-lg ring-1"
                     : "border-border hover:border-foreground/10"
                 }`}
               >

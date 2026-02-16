@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useScrollReveal } from "@/lib/useScrollReveal";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const FEATURES = [
   {
@@ -93,16 +93,16 @@ export default function FeaturesSection() {
               <Card
                 key={feature.title}
                 data-reveal
-                className={`group border-border bg-card/80 hover:border-foreground/15 hover:shadow-foreground/[0.02] relative overflow-hidden backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${feature.span}`}
+                className={`group border-border bg-card/80 hover:border-foreground/15 hover:shadow-foreground/2 relative overflow-hidden backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${feature.span}`}
               >
                 {/* Top edge glow */}
                 <div className="via-foreground/10 pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 <CardHeader
-                  className={feature.tall ? "justify-end md:min-h-[260px]" : ""}
+                  className={feature.tall ? "justify-end md:min-h-65" : ""}
                 >
                   <div
-                    className={`bg-foreground/[0.04] ring-foreground/[0.06] group-hover:ring-foreground/10 mb-3 w-fit rounded-lg ring-1 transition-all duration-300 ${feature.tall ? "p-4" : "p-3"}`}
+                    className={`bg-foreground/4 ring-foreground/6 group-hover:ring-foreground/10 mb-3 w-fit rounded-lg ring-1 transition-all duration-300 ${feature.tall ? "p-4" : "p-3"}`}
                   >
                     <Icon
                       className={`text-foreground ${feature.tall ? "size-6" : "size-5"}`}
@@ -117,7 +117,7 @@ export default function FeaturesSection() {
 
                   {/* Decorative element for hero card */}
                   {feature.tall && (
-                    <div className="font-plex-mono mt-4 rounded-md bg-white/[0.03] p-3 text-[11px] leading-relaxed text-white/30 ring-1 ring-white/[0.06]">
+                    <div className="font-plex-mono mt-4 rounded-md bg-white/3 p-3 text-[11px] leading-relaxed text-white/30 ring-1 ring-white/6">
                       <span className="text-white/50">{">"}</span>{" "}
                       <span className="text-white/40">
                         Add a search bar to filter projects...

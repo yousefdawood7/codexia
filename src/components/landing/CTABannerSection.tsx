@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { ArrowRight } from "lucide-react";
+import RadialGlow from "@/components/RadialGlow";
 import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
@@ -92,14 +93,7 @@ export default function CTABannerSection() {
           backgroundSize: "256px 256px",
         }}
       />
-
-      {/* Subtle radial glow */}
-      <div
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2"
-        aria-hidden
-      >
-        <div className="bg-background/[0.04] h-[300px] w-[600px] rounded-full blur-3xl" />
-      </div>
+      <RadialGlow />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <h2

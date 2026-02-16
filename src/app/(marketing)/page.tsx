@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import CTABannerSection from "@/components/landing/CTABannerSection";
-import ProductDemoSection from "@/components/landing/editor/ProductDemoSection";
-import DashboardSnippet from "@/components/landing/editor/snippets/DashboardSnippet";
+import Editor from "@/components/landing/editor/Editor";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import FooterSection from "@/components/landing/FooterSection";
 import HeroSection from "@/components/landing/HeroSection";
@@ -25,10 +24,9 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return (
     <div className="font-poppins bg-background text-foreground">
-      <DashboardSnippet />
       <Navbar />
       <HeroSection />
-      <ProductDemoSection />
+      <Editor />
       <GradientDivider />
       <FeaturesSection />
       <GradientDivider />
