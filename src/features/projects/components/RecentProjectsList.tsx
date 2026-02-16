@@ -5,6 +5,7 @@ import ProjectListDesktop from "@/features/projects/components/ProjectListDeskto
 import ProjectListMobile from "@/features/projects/components/ProjectListMobile";
 import ViewAllProjects from "@/features/projects/components/ViewAllProjects";
 import { SCROLL_THRESHOLD } from "@/features/projects/constants";
+import { getShortcut } from "@/lib/utils";
 
 type RecentProjectsListProps = {
   allProjects: Doc<"projects">[];
@@ -24,7 +25,7 @@ export default function RecentProjectsList({
         </h2>
         <nav className="flex items-center gap-2.5">
           <ViewAllProjects projects={allProjects} />
-          <CommandButton operationString="⌘K" />
+          <CommandButton operationString={getShortcut("COMMAND_PALETTE")} />
         </nav>
       </header>
 

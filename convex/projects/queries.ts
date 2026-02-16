@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { v } from "convex/values";
 
 import { query } from "../_generated/server";
@@ -17,5 +18,26 @@ export const getProjects = query({
       .withIndex("by_owner", (q) => q.eq("ownerID", currentUser.subject))
       .order("desc")
       [numberOfProjects ? "take" : "collect"](numberOfProjects ?? 0); // Argument will be ignored by collect()
+  },
+});
+
+export const getProjectById = query({
+  args: { projectId: v.id("projects") },
+  handler: async (ctx, { projectId }) => {
+    const currentUser = await userIdentity(ctx);
+    const project = await ctx.db.get("projects", projectId);
+
+    // prettier-ignore
+    if(!currentUser)
+      return null;
+
+    // prettier-ignore
+    if (!project)
+      notFound();
+
+    if (project?.ownerID !== currentUser.subject)
+      throw new Error("Unauthorized Access");
+
+    return project;
   },
 });

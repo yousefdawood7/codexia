@@ -34,7 +34,8 @@ yarn-error.log*
 .env*
 
 # vscode
-.vscode/*
+/.vscode/*
+/.agents/*
 
 # vercel
 .vercel

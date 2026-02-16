@@ -1,7 +1,7 @@
 import { Doc } from "@/../convex/_generated/dataModel";
 import ProjectItem from "@/features/projects/components/ProjectItem";
 import { IMPORT_STATUS } from "@/features/projects/constants";
-import { getFormattedTime } from "@/lib/utils";
+import { getFormattedTimeFromNow } from "@/lib/utils";
 
 type ProjectListDesktopProps = {
   projects: Doc<"projects">[];
@@ -18,9 +18,10 @@ export default function ProjectListDesktop({
       {projects.map((project) => (
         <li key={project._id}>
           <ProjectItem
+            id={project._id}
             icon={IMPORT_STATUS[project.importStatus]}
             title={project.name}
-            content={getFormattedTime(project.updatedAt)}
+            content={getFormattedTimeFromNow(project.updatedAt)}
           />
         </li>
       ))}

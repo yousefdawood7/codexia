@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { v } from "convex/values";
 
 import { mutation } from "../_generated/server";
@@ -17,6 +18,30 @@ export const createProject = mutation({
       updatedAt: Date.now(),
       ownerID: currentUser.subject,
       importStatus: "IMPORTING",
+    });
+  },
+});
+
+export const renameProject = mutation({
+  args: { projectId: v.id("projects"), newName: v.string() },
+  handler: async (ctx, { projectId, newName }) => {
+    const currentUser = await userIdentity(ctx);
+    const project = await ctx.db.get("projects", projectId);
+
+    // prettier-ignore
+    if(!currentUser)
+        return null;
+
+    // prettier-ignore
+    if (!project)
+      notFound();
+
+    if (project?.ownerID !== currentUser.subject)
+      throw new Error("`Unauthorized` Access");
+
+    return ctx.db.patch("projects", projectId, {
+      name: newName,
+      updatedAt: Date.now(),
     });
   },
 });
