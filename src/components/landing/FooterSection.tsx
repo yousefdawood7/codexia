@@ -2,30 +2,30 @@ import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import CodexiaLogo from "@/components/CodexiaLogo";
 import { Separator } from "@/components/ui/separator";
+import FooterLinks, { type Link as LinkType } from "@/components/FooterLinks";
 
-const PRODUCT_LINKS = [
+const PRODUCT_LINKS: LinkType[] = [
   { label: "Features", href: "#features" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
-] as const;
+];
 
-const COMPANY_LINKS = [
+const COMPANY_LINKS: LinkType[] = [
   { label: "About", href: "#" },
   { label: "Blog", href: "#" },
   { label: "Careers", href: "#" },
-] as const;
+];
 
-const LEGAL_LINKS = [
+const LEGAL_LINKS: LinkType[] = [
   { label: "Privacy", href: "#" },
   { label: "Terms", href: "#" },
-] as const;
+];
 
 export default function FooterSection() {
   return (
     <footer className="bg-noise relative">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="mb-4 flex items-center gap-2.5">
               <CodexiaLogo width={24} height={24} />
@@ -39,70 +39,13 @@ export default function FooterSection() {
             </p>
           </div>
 
-          {/* Product */}
-          <div>
-            <h4 className="text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
-              Product
-            </h4>
-            <ul className="space-y-2.5">
-              {PRODUCT_LINKS.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="group/link text-muted-foreground hover:text-foreground relative text-sm transition-colors"
-                  >
-                    {link.label}
-                    <span className="bg-foreground absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300 group-hover/link:w-full" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h4 className="text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
-              Company
-            </h4>
-            <ul className="space-y-2.5">
-              {COMPANY_LINKS.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="group/link text-muted-foreground hover:text-foreground relative text-sm transition-colors"
-                  >
-                    {link.label}
-                    <span className="bg-foreground absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300 group-hover/link:w-full" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="text-muted-foreground mb-4 text-[10px] font-medium tracking-[0.2em] uppercase">
-              Legal
-            </h4>
-            <ul className="space-y-2.5">
-              {LEGAL_LINKS.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="group/link text-muted-foreground hover:text-foreground relative text-sm transition-colors"
-                  >
-                    {link.label}
-                    <span className="bg-foreground absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300 group-hover/link:w-full" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {FooterLinks({ title: "Product", links: PRODUCT_LINKS })}
+          {FooterLinks({ title: "Resources", links: COMPANY_LINKS })}
+          {FooterLinks({ title: "Legal", links: LEGAL_LINKS })}
         </div>
 
         <Separator className="my-8" />
 
-        {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-center gap-3">
           <div className="flex items-center gap-3">
             <span className="text-muted-foreground/50 text-sm tracking-wider">
