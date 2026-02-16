@@ -1,5 +1,5 @@
 import BrowserBar from "@/components/landing/editor/BrowserBar";
-import CodeSnippet from "@/components/landing/editor/CodeSnipptet";
+import CodeSnippet from "@/components/landing/editor/CodeSnippet";
 import { CHAT_MESSAGES, TABS } from "@/components/landing/editor/constants";
 import { type Tab } from "@/components/landing/editor/types";
 

@@ -1,5 +1,8 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 type UseEditorAnimate = {
   sectionRef: React.RefObject<HTMLElement | null>;
