@@ -3,13 +3,18 @@
 import { useMemo, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { shaderMaterial } from "@react-three/drei";
-import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
+import {
+  Canvas,
+  extend,
+  type ThreeElement,
+  useFrame,
+  useThree,
+} from "@react-three/fiber";
 import gsap from "gsap";
 import * as THREE from "three";
 
 gsap.registerPlugin(useGSAP);
 
-// ===================== CPPN SHADER =====================
 const vertexShader = `
   varying vec2 vUv;
   void main() {
@@ -160,14 +165,18 @@ const CPPNShaderMaterial = shaderMaterial(
   fragmentShader,
 );
 
+type CPPNShaderMaterialImpl = THREE.ShaderMaterial & {
+  iTime: number;
+  iResolution: THREE.Vector2;
+};
+
 extend({ CPPNShaderMaterial });
 
 function ShaderPlane() {
   const meshRef = useRef<THREE.Mesh>(null!);
-  const materialRef = useRef<any>(null!);
+  const materialRef = useRef<CPPNShaderMaterialImpl>(null!);
   const { viewport } = useThree();
 
-  // Scale plane width to viewport aspect ratio so the shader always covers edge-to-edge
   const planeWidth = Math.max(4, 4 * viewport.aspect);
 
   useFrame((state) => {
@@ -185,7 +194,6 @@ function ShaderPlane() {
   );
 }
 
-// ===================== EXPORTED BACKGROUND =====================
 export default function NeuralShaderBackground() {
   const canvasRef = useRef<HTMLDivElement | null>(null);
 
@@ -231,18 +239,17 @@ export default function NeuralShaderBackground() {
         camera={camera}
         gl={{ antialias: true, alpha: false }}
         dpr={[1, 2]}
-        className="!absolute !inset-0"
+        className="absolute! inset-0!"
         style={{ width: "100%", height: "100%" }}
       >
         <ShaderPlane />
       </Canvas>
-      <div className="from-background pointer-events-none absolute inset-0 bg-linear-to-t via-transparent to-transparent" />
     </div>
   );
 }
 
 declare module "@react-three/fiber" {
   interface ThreeElements {
-    cPPNShaderMaterial: any;
+    cPPNShaderMaterial: ThreeElement<typeof CPPNShaderMaterial>;
   }
 }

@@ -114,7 +114,7 @@ export default function CTABannerSection() {
 
         <div
           ref={ctaRef}
-          className="mt-8 flex flex-wrap items-center justify-center gap-4"
+          className="mt-8 flex min-h-15.5 flex-wrap items-center justify-center gap-4"
         >
           <SignedOut>
             <SignUpButton mode="modal">

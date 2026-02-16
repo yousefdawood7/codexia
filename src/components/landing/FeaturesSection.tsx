@@ -1,7 +1,7 @@
 "use client";
 
 import { Import, MessageSquare, RefreshCw, Shield } from "lucide-react";
-import SectionLabel from "@/components/landing/SectionLabel";
+import SectionHeader from "@/components/landing/SectionHeader";
 import {
   Card,
   CardDescription,
@@ -71,19 +71,11 @@ export default function FeaturesSection() {
       />
 
       <div className="relative mx-auto max-w-5xl px-6">
-        {/* Section Header */}
-        <div data-reveal className="mb-14 text-center md:mb-16">
-          <SectionLabel>Features</SectionLabel>
-          <h2 className="font-poppins text-3xl font-bold tracking-tight md:text-4xl">
-            Everything you need{" "}
-            <span className="text-muted-foreground font-light">
-              to ship faster
-            </span>
-          </h2>
-          <p className="text-muted-foreground mx-auto mt-4 max-w-2xl md:text-lg">
-            Powerful tools. Zero learning curve. Built for makers who move fast.
-          </p>
-        </div>
+        <SectionHeader
+          subTitle="Features"
+          title={{ text: "to ship faster", highlight: "Everything you need" }}
+          description="Powerful tools. Zero learning curve. Built for makers who move fast."
+        />
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-6">

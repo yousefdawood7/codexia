@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
