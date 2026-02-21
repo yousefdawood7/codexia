@@ -1,6 +1,6 @@
 export const CHAT_PANE = {
   MIN_SIZE: 300,
-  MAX_SIZE: 850,
+  MAX_SIZE: 1350,
   PREFERRED_SIZE: 500,
 } as const;
 

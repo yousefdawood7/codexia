@@ -1,8 +1,7 @@
-import { notFound } from "next/navigation";
 import { v } from "convex/values";
 
-import { query } from "../_generated/server";
 import { userIdentity } from "../_shared/dal";
+import { query } from "../_generated/server";
 
 export const getProjects = query({
   args: { numberOfProjects: v.optional(v.number()) },
@@ -29,11 +28,11 @@ export const getProjectById = query({
 
     // prettier-ignore
     if(!currentUser)
-      return null;
+      throw new Error("Unauthorized Access", {cause:'You must be logged in to access this project'});
 
     // prettier-ignore
     if (!project)
-      notFound();
+      throw new Error('Project Not Found', {cause:'The project you are looking for does not exist' })
 
     if (project?.ownerID !== currentUser.subject)
       throw new Error("Unauthorized Access");

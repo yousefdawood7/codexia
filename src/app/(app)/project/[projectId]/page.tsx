@@ -8,7 +8,7 @@ import {
 } from "@/features/editor/constants";
 import "allotment/dist/style.css";
 
-export default async function Page({}: PageProps<"/project/[projectId]">) {
+export default async function Page() {
   return (
     <ResizablePane
       leftPane={<EditorPane />}

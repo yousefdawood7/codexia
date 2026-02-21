@@ -3,7 +3,7 @@
 import { Allotment } from "allotment";
 
 type ResizablePaneProps = {
-  paneRatio: [number, number];
+  paneRatio: [leftSize: number, rightSize: number];
 
   leftPane: React.ReactNode;
   leftMinSize: number;
@@ -24,7 +24,7 @@ export default function ResizablePane({
   rightPane,
 }: ResizablePaneProps) {
   return (
-    <Allotment defaultSizes={[...paneRatio]}>
+    <Allotment defaultSizes={paneRatio}>
       <Allotment.Pane minSize={leftMinSize}>{leftPane}</Allotment.Pane>
       <Allotment.Pane
         minSize={rightMinSize}

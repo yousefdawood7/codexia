@@ -3,12 +3,19 @@
 import { LucideShieldAlert } from "lucide-react";
 import Placeholder from "@/components/Placeholder";
 
-export default function Error() {
+export default function Error({
+  error,
+}: {
+  error: Error & { digest?: string };
+}) {
   return (
     <main className="flex min-h-svh items-center justify-center">
       <Placeholder
-        title="Unauthorized Access"
-        description="You do not have the necessary permissions to access this page"
+        title={error.message || "Unauthorized Access"}
+        description={
+          (error.cause as string) ||
+          "You do not have permission to access this project."
+        }
         icon={LucideShieldAlert}
         className="max-w-125"
       />
