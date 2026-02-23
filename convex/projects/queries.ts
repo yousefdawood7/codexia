@@ -1,7 +1,7 @@
 import { v } from "convex/values";
 
-import { userIdentity } from "../_shared/dal";
 import { query } from "../_generated/server";
+import { userIdentity } from "../_shared/dal";
 
 export const getProjects = query({
   args: { numberOfProjects: v.optional(v.number()) },
