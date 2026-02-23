@@ -3,6 +3,8 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
+import ShinyText from "@/components/ShinyText";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Silk from "@/components/ui/Silk";
 import { useHeroAnimate } from "@/hooks/useHeroAnimate";
@@ -36,7 +38,22 @@ export default function HeroSection() {
       />
 
       <div className="absolute z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center sm:gap-8">
-        <div
+        <Badge variant={"outline"}>
+          <ShinyText
+            renderString={"✨ AI-Powered Workspace"}
+            speed={2}
+            delay={0}
+            color="#b5b5b5"
+            shineColor="#ffffff"
+            spread={120}
+            direction="left"
+            yoyo={false}
+            pauseOnHover={false}
+            disabled={false}
+          />
+        </Badge>
+
+        {/* <div
           ref={badgeRef}
           className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm"
         >
@@ -47,7 +64,7 @@ export default function HeroSection() {
           <span className="text-xs font-light tracking-tight text-white/80">
             Workspace
           </span>
-        </div>
+        </div> */}
 
         <h1
           ref={headerRef}
