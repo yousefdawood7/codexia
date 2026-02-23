@@ -3,9 +3,9 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
-import ShinyText from "@/components/ShinyText";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import ShinyText from "@/components/ui/ShinyText";
 import Silk from "@/components/ui/Silk";
 import { useHeroAnimate } from "@/hooks/useHeroAnimate";
 
@@ -14,14 +14,12 @@ export default function HeroSection() {
   const headerRef = useRef<HTMLHeadingElement | null>(null);
   const paraRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRef = useRef<HTMLDivElement | null>(null);
-  const badgeRef = useRef<HTMLDivElement | null>(null);
 
   useHeroAnimate({
     sectionRef,
     headerRef,
     paraRef,
     ctaRef,
-    badgeRef,
   });
 
   return (
@@ -52,19 +50,6 @@ export default function HeroSection() {
             disabled={false}
           />
         </Badge>
-
-        {/* <div
-          ref={badgeRef}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm"
-        >
-          <span className="text-[10px] font-light tracking-[0.08em] text-white/70 uppercase">
-            AI-Powered
-          </span>
-          <span className="h-1 w-1 rounded-full bg-white/40" />
-          <span className="text-xs font-light tracking-tight text-white/80">
-            Workspace
-          </span>
-        </div> */}
 
         <h1
           ref={headerRef}
@@ -117,7 +102,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-linear-to-t to-transparent" />
+      <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-70 bg-linear-to-t to-transparent" />
     </section>
   );
 }

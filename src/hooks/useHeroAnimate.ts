@@ -9,7 +9,6 @@ type UseHeroAnimate = {
   headerRef: React.RefObject<HTMLHeadingElement | null>;
   paraRef: React.RefObject<HTMLParagraphElement | null>;
   ctaRef: React.RefObject<HTMLDivElement | null>;
-  badgeRef: React.RefObject<HTMLDivElement | null>;
 };
 
 export function useHeroAnimate({
@@ -17,7 +16,6 @@ export function useHeroAnimate({
   headerRef,
   paraRef,
   ctaRef,
-  badgeRef,
 }: UseHeroAnimate) {
   useGSAP(
     () => {
@@ -43,9 +41,6 @@ export function useHeroAnimate({
           transformOrigin: "50% 100%",
         });
 
-        if (badgeRef.current) {
-          gsap.set(badgeRef.current, { autoAlpha: 0, y: -8 });
-        }
         if (paraRef.current) {
           gsap.set(paraRef.current, { autoAlpha: 0, y: 8 });
         }
@@ -56,10 +51,6 @@ export function useHeroAnimate({
         const tl = gsap.timeline({
           defaults: { ease: "power3.out" },
         });
-
-        if (badgeRef.current) {
-          tl.to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0);
-        }
 
         tl.to(
           split.lines,
