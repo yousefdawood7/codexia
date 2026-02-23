@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-function GradientDivider({ className }: { className?: string }) {
+export function GradientDivider({ className }: { className?: string }) {
   return (
     <div
       aria-hidden
@@ -14,5 +14,3 @@ function GradientDivider({ className }: { className?: string }) {
     </div>
   );
 }
-
-export { GradientDivider };

@@ -2,12 +2,8 @@
 
 import { Import, MessageSquare, RefreshCw, Shield } from "lucide-react";
 import SectionHeader from "@/components/landing/SectionHeader";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const FEATURES = [
@@ -82,10 +78,9 @@ export default function FeaturesSection() {
           {FEATURES.map((feature) => {
             const Icon = feature.icon;
             return (
-              <Card
+              <SpotlightCard
                 key={feature.title}
-                data-reveal
-                className={`group border-border bg-card/80 hover:border-foreground/15 hover:shadow-foreground/2 relative overflow-hidden backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${feature.span}`}
+                className={`group border-border bg-card/80! hover:border-foreground/15 hover:shadow-foreground/2 relative overflow-hidden backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${feature.span} px-0`}
               >
                 {/* Top edge glow */}
                 <div className="via-foreground/10 pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -121,7 +116,7 @@ export default function FeaturesSection() {
                     </div>
                   )}
                 </CardHeader>
-              </Card>
+              </SpotlightCard>
             );
           })}
         </div>

@@ -11,6 +11,11 @@ const eslintConfig = defineConfig([
     plugins: {
       "simple-import-sort": simpleImportSort,
     },
+
+    settings: {
+      react: { version: "19" }, // Avoids auto-detection crash
+    },
+
     rules: {
       "simple-import-sort/imports": [
         "warn",
