@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import CodexiaLogo from "@/components/CodexiaLogo";
 import { Button } from "@/components/ui/button";
+import { useNavScroll } from "@/hooks/useNavScroll";
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
@@ -15,14 +16,8 @@ const NAV_LINKS = [
 ] as const;
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useNavScroll();
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
