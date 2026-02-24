@@ -11,9 +11,7 @@ import {
 } from "lucide-react";
 import { api } from "@/../convex/_generated/api";
 import { Id } from "@/../convex/_generated/dataModel";
-import { Button } from "@/components/ui/button";
 import FileExplorerButton from "@/features/editor/components/file-explorer/FileExplorerButton";
-import { cn } from "@/lib/utils";
 
 export default function FileExplorerSwitcher() {
   const [isOpened, setIsOpened] = useState<boolean>(true);
@@ -29,7 +27,10 @@ export default function FileExplorerSwitcher() {
   return (
     <div
       className="bg-background flex justify-between p-0.5 select-none"
-      onClick={() => setIsOpened((prev) => !prev)}
+      onClick={(e) => {
+        setIsOpened((prev) => !prev);
+        e.stopPropagation();
+      }}
     >
       <div className="flex max-w-52 items-center gap-1 truncate">
         <LucideChevronRight
@@ -38,7 +39,8 @@ export default function FileExplorerSwitcher() {
         <span className="inline-block truncate">{project.name}</span>
       </div>
 
-      <div className="flex">
+      {/* we put invisible class here to allow propagate at first */}
+      <div className="invisible flex" onClick={(e) => e.stopPropagation()}>
         <FileExplorerButton
           icon={<LucideFilePlusCorner className="size-4" />}
           isOpened={isOpened}
