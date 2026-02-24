@@ -31,14 +31,14 @@ export default function FileExplorerSwitcher() {
       className="bg-background flex justify-between p-0.5 select-none"
       onClick={() => setIsOpened((prev) => !prev)}
     >
-      <div className="flex max-w-52 items-center gap-1">
+      <div className="flex max-w-52 items-center gap-1 truncate">
         <LucideChevronRight
           className={`size-4 transition-transform ${isOpened ? "rotate-90" : "rotate-0"} shrink-0`}
         />
         <span className="inline-block truncate">{project.name}</span>
       </div>
 
-      <div>
+      <div className="flex">
         <FileExplorerButton
           icon={<LucideFilePlusCorner className="size-4" />}
           isOpened={isOpened}
