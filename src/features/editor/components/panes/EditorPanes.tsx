@@ -12,7 +12,7 @@ export default function EditorPanes() {
 
   return (
     <section className="h-full">
-      <header className="bg-primary-foreground flex items-center justify-between">
+      <header className="bg-primary-foreground flex items-center justify-between border-b">
         <nav>
           <Tab
             className="h-auto border-r px-7 py-3.5 text-lg"
