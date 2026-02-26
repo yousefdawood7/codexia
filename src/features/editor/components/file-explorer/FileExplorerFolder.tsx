@@ -10,13 +10,13 @@ type FileExplorerFolderProps = {
 
 export default function FileExplorerFolder({
   name,
-  children = [],
+  children,
 }: FileExplorerFolderProps) {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   return (
     <div
-      className="flex flex-col select-none"
+      className="relative flex flex-col select-none"
       onClick={(e) => {
         e.stopPropagation();
         setIsOpened((prev) => !prev);
@@ -30,11 +30,16 @@ export default function FileExplorerFolder({
               isOpened ? "rotate-90" : "rotate-0",
             )}
           />
-          <FolderIcon folderName={name} width={20} height={20} />
+          <FolderIcon
+            folderName={name}
+            width={20}
+            height={20}
+            className="shrink-0"
+          />
         </div>
         <span
           className={cn(
-            "text-muted-foreground hover:text-foreground",
+            "text-muted-foreground hover:text-foreground truncate",
             isOpened && "text-foreground",
           )}
         >
@@ -44,7 +49,9 @@ export default function FileExplorerFolder({
 
       {children && (
         <Activity mode={isOpened ? "visible" : "hidden"}>
-          <div className="pl-5">{children}</div>
+          <div className="before:border-muted-foreground pl-5 before:absolute before:inset-y-2 before:top-5 before:left-1.75 before:block before:w-0.5 before:border-l before:content-['']">
+            {children}
+          </div>
         </Activity>
       )}
     </div>

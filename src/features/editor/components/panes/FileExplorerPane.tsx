@@ -1,4 +1,5 @@
 import { Activity, useState } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import FileExplorerProject from "@/features/editor/components/file-explorer/FileExplorerProject";
 import FileExplorerSwitcher from "@/features/editor/components/file-explorer/FileExplorerSwitcher";
 
@@ -13,7 +14,9 @@ export default function FileExplorerPane() {
       />
 
       <Activity mode={isOpened ? "visible" : "hidden"}>
-        <FileExplorerProject />
+        <ScrollArea className="h-full">
+          <FileExplorerProject />
+        </ScrollArea>
       </Activity>
     </div>
   );
