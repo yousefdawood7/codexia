@@ -1,8 +1,8 @@
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import CodexiaLogo from "@/components/CodexiaLogo";
-import { Separator } from "@/components/ui/separator";
 import FooterLinks, { type Link as LinkType } from "@/components/FooterLinks";
+import { Separator } from "@/components/ui/separator";
 
 const PRODUCT_LINKS: LinkType[] = [
   { label: "Features", href: "#features" },
