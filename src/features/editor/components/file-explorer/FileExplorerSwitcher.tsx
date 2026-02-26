@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useParams } from "next/navigation";
 import { useQuery } from "convex/react";
 import {
@@ -13,8 +12,15 @@ import { api } from "@/../convex/_generated/api";
 import { Id } from "@/../convex/_generated/dataModel";
 import FileExplorerButton from "@/features/editor/components/file-explorer/FileExplorerButton";
 
-export default function FileExplorerSwitcher() {
-  const [isOpened, setIsOpened] = useState<boolean>(true);
+type FileExplorerSwitcherProps = {
+  isOpened: boolean;
+  setIsOpened: () => void;
+};
+
+export default function FileExplorerSwitcher({
+  isOpened,
+  setIsOpened,
+}: FileExplorerSwitcherProps) {
   const { projectId } = useParams<{ projectId: Id<"projects"> }>();
   const project = useQuery(api.projects.queries.getProjectById, {
     projectId,
@@ -28,7 +34,7 @@ export default function FileExplorerSwitcher() {
     <div
       className="bg-background flex justify-between p-0.5 select-none"
       onClick={(e) => {
-        setIsOpened((prev) => !prev);
+        setIsOpened();
         e.stopPropagation();
       }}
     >

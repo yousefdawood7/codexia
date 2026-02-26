@@ -1,3 +1,9 @@
+export type FolderStructure = {
+  type: "file" | "folder";
+  name: string;
+  children?: FolderStructure[];
+};
+
 export const CHAT_PANE = {
   MIN_SIZE: 120,
   MAX_SIZE: 1350,
