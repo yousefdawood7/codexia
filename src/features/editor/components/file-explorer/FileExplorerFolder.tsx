@@ -1,5 +1,6 @@
-import React, { Activity, useState } from "react";
-import { LucideChevronRight, LucideFolder } from "lucide-react";
+import { Activity, useState } from "react";
+import { FolderIcon } from "@react-symbols/icons/utils";
+import { LucideChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type FileExplorerFolderProps = {
@@ -29,7 +30,7 @@ export default function FileExplorerFolder({
               isOpened ? "rotate-90" : "rotate-0",
             )}
           />
-          <LucideFolder className="size-4" />
+          <FolderIcon folderName={name} width={20} height={20} />
         </div>
         <span
           className={cn(
