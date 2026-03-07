@@ -10,13 +10,13 @@ export function useOptimisticRenameProject(
   const optimisticCreateProject = useMutation(
     renameProject,
   ).withOptimisticUpdate((localStore, args) => {
-    const { projectId, newName } = args as {
-      projectId: Id<"projects">;
+    const { projectID, newName } = args as {
+      projectID: Id<"projects">;
       newName: string;
     };
     const currentProject = localStore.getQuery(
       api.projects.queries.getProjectById,
-      { projectId },
+      { projectID },
     );
 
     // prettier-ignore
@@ -27,7 +27,7 @@ export function useOptimisticRenameProject(
 
     localStore.setQuery(
       api.projects.queries.getProjectById,
-      { projectId },
+      { projectID },
       {
         ...currentProject,
         name: newName,

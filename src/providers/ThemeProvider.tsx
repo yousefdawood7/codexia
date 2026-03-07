@@ -10,7 +10,6 @@ export function ThemeProvider({
     <NextThemesProvider
       attribute="class"
       defaultTheme="dark"
-      enableSystem
       disableTransitionOnChange
     >
       {children}

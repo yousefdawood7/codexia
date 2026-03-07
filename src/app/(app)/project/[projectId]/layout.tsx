@@ -9,7 +9,7 @@ export default async function Layout({
   return (
     <div className="flex h-svh flex-col">
       <header className="bg-primary-foreground border-b p-2.5">
-        <EditorBreadcrumb projectId={projectId} />
+        <EditorBreadcrumb projectID={projectId} />
       </header>
 
       <main className="flex-1">{children}</main>

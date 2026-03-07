@@ -21,10 +21,10 @@ export const getProjects = query({
 });
 
 export const getProjectById = query({
-  args: { projectId: v.id("projects") },
-  handler: async (ctx, { projectId }) => {
+  args: { projectID: v.id("projects") },
+  handler: async (ctx, { projectID }) => {
     const currentUser = await userIdentity(ctx);
-    const project = await ctx.db.get("projects", projectId);
+    const project = await ctx.db.get("projects", projectID);
 
     // prettier-ignore
     if(!currentUser)

@@ -22,10 +22,10 @@ import { useOptimisticRenameProject } from "@/features/projects/hooks/useOptimis
 import { cn, getFormattedTimeFromNow } from "@/lib/utils";
 
 type EditorBreadcrumbProps = {
-  projectId: Id<"projects">;
+  projectID: Id<"projects">;
 };
 
-export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
+export default function EditorBreadcrumb({ projectID }: EditorBreadcrumbProps) {
   const [isRenameActive, setIsRenameActive] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement | null>(null);
   const renameProject = useOptimisticRenameProject(
@@ -33,7 +33,7 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
   );
 
   const project = useQuery(api.projects.queries.getProjectById, {
-    projectId,
+    projectID,
   });
 
   function handleIsActive() {
@@ -51,14 +51,14 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
       return;
 
     if (e.key === "Enter")
-      renameProject({ projectId, newName: e.currentTarget.value });
+      renameProject({ projectID, newName: e.currentTarget.value });
 
     setIsRenameActive(false);
   }
 
   function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
     setIsRenameActive(false);
-    renameProject({ projectId, newName: e.target.value });
+    renameProject({ projectID, newName: e.target.value });
   }
 
   const ProjectNameRename = (

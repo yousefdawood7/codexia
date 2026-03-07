@@ -23,10 +23,10 @@ export const createProject = mutation({
 });
 
 export const renameProject = mutation({
-  args: { projectId: v.id("projects"), newName: v.string() },
-  handler: async (ctx, { projectId, newName }) => {
+  args: { projectID: v.id("projects"), newName: v.string() },
+  handler: async (ctx, { projectID, newName }) => {
     const currentUser = await userIdentity(ctx);
-    const project = await ctx.db.get("projects", projectId);
+    const project = await ctx.db.get("projects", projectID);
 
     // prettier-ignore
     if(!currentUser)
@@ -39,7 +39,7 @@ export const renameProject = mutation({
     if (project?.ownerID !== currentUser.subject)
       throw new Error("`Unauthorized` Access");
 
-    return ctx.db.patch("projects", projectId, {
+    return ctx.db.patch("projects", projectID, {
       name: newName,
       updatedAt: Date.now(),
     });
