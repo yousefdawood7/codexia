@@ -40,7 +40,9 @@ export default function EditorPanes() {
       </header>
 
       <Activity mode={currentPane === "code" ? "visible" : "hidden"}>
-        <CodePane />
+        <div className="h-full w-full">
+          <CodePane />
+        </div>
       </Activity>
       {currentPane === "preview" && <div>Preview Pane</div>}
     </section>

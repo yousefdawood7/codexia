@@ -1,5 +1,4 @@
-import { notFound } from "next/navigation";
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 
 import { mutation } from "../_generated/server";
 import { userIdentity } from "../_shared/dal";
@@ -11,7 +10,7 @@ export const createProject = mutation({
 
     // prettier-ignore
     if(!currentUser)
-        return null;
+        throw new ConvexError({message: "Unauthorized Access", cause: "You must be logged in to create a project"});
 
     return ctx.db.insert("projects", {
       name: projectName,
@@ -30,14 +29,17 @@ export const renameProject = mutation({
 
     // prettier-ignore
     if(!currentUser)
-        return null;
+      throw new ConvexError({message: "Unauthorized Access", cause: "You must be logged in to rename this project"});
 
     // prettier-ignore
     if (!project)
-      notFound();
+      throw new ConvexError({message: "Project Not Found", cause: "The project you are trying to rename does not exist"});
 
     if (project?.ownerID !== currentUser.subject)
-      throw new Error("`Unauthorized` Access");
+      throw new ConvexError({
+        message: "Unauthorized Access",
+        cause: "You are not the owner of this project.",
+      });
 
     return ctx.db.patch("projects", projectID, {
       name: newName,

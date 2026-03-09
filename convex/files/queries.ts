@@ -1,4 +1,4 @@
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 
 import { query } from "../_generated/server";
 import { userIdentity } from "../_shared/dal";
@@ -11,11 +11,11 @@ export const getFiles = query({
 
     // prettier-ignore
     if (!currentUser)
-      throw new Error("Unauth Accessss");
+      throw new ConvexError({message: "Unauthorized Access", cause: "You must be logged in to access this project."});
 
     // prettier-ignore
     if (project?.ownerID !== currentUser.subject)
-      throw new Error("Unauth Access");
+      throw new ConvexError({message: "Unauthorized Access", cause: "You are not the owner of this project."});
 
     const files = await ctx.db
       .query("files")

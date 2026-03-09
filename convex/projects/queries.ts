@@ -1,4 +1,4 @@
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 
 import { query } from "../_generated/server";
 import { userIdentity } from "../_shared/dal";
@@ -10,7 +10,7 @@ export const getProjects = query({
 
     // prettier-ignore
     if(!currentUser)
-        return null;
+      throw new ConvexError({message: "Unauthorized Access", cause: "You must be logged in to access this project."});
 
     return ctx.db
       .query("projects")
@@ -27,15 +27,16 @@ export const getProjectById = query({
     const project = await ctx.db.get("projects", projectID);
 
     // prettier-ignore
-    if(!currentUser)
-      throw new Error("Unauthorized Access", {cause:'You must be logged in to access this project'});
+    if (!currentUser)
+      throw new ConvexError({message: "Unauthorized Access", cause: "You must be logged in to access this project."});
+
+    // prettier-ignore
+    if (project?.ownerID !== currentUser.subject)
+      throw new ConvexError({message: "Unauthorized Access", cause: "You are not the owner of this project."});
 
     // prettier-ignore
     if (!project)
-      throw new Error('Project Not Found', {cause:'The project you are looking for does not exist' })
-
-    if (project?.ownerID !== currentUser.subject)
-      throw new Error("Unauthorized Access");
+      throw new ConvexError({message: "Project Not Found", cause: "The project you are looking for does not exist." });
 
     return project;
   },
