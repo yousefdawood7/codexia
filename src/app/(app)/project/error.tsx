@@ -20,8 +20,9 @@ export default function Error({
         description={
           error instanceof ConvexError
             ? error.data.cause || ""
-            : error.cause ||
-              "You do not have permission to access this project."
+            : typeof error.cause === "string"
+              ? error.cause
+              : "You do not have permission to access this project."
         }
         icon={LucideShieldAlert}
         className="max-w-125"

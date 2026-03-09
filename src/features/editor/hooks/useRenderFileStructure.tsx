@@ -6,14 +6,14 @@ export function useRenderFileStructure() {
   const renderFileStructures = function (files: Doc<"files">[]) {
     return files?.map((file) => {
       if (file.type === "FILE")
-        return <FileExplorerFile key={file.name} name={file.name} />;
+        return <FileExplorerFile key={file._id} name={file.name} />;
 
       const folderChildren = files.filter(
         (innerFile) => innerFile.parentFolderID === file._id,
       );
 
       return (
-        <FileExplorerFolder key={file.name} name={file.name}>
+        <FileExplorerFolder key={file._id} name={file.name}>
           {folderChildren.length && renderFileStructures(folderChildren)}
         </FileExplorerFolder>
       );

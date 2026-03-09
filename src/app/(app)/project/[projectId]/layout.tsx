@@ -6,6 +6,7 @@ export default async function Layout({
   params,
 }: LayoutProps<"/project/[projectId]">) {
   const { projectId } = (await params) as { projectId: Id<"projects"> };
+
   return (
     <div className="flex h-svh flex-col">
       <header className="bg-primary-foreground border-b p-2.5">

@@ -31,12 +31,12 @@ export const getProjectById = query({
       throw new ConvexError({message: "Unauthorized Access", cause: "You must be logged in to access this project."});
 
     // prettier-ignore
-    if (project?.ownerID !== currentUser.subject)
-      throw new ConvexError({message: "Unauthorized Access", cause: "You are not the owner of this project."});
-
-    // prettier-ignore
     if (!project)
       throw new ConvexError({message: "Project Not Found", cause: "The project you are looking for does not exist." });
+
+    // prettier-ignore
+    if (project?.ownerID !== currentUser.subject)
+      throw new ConvexError({message: "Unauthorized Access", cause: "You are not the owner of this project."});
 
     return project;
   },
