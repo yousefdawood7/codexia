@@ -4,6 +4,7 @@ import { mutation } from "../_generated/server";
 import { userIdentity } from "../_shared/dal";
 import { checkIsNewFileNameUnique } from "../_shared/utils";
 
+// Work for files and directories (folders)
 export const addFile = mutation({
   args: {
     projectID: v.id("projects"),
@@ -14,6 +15,7 @@ export const addFile = mutation({
   handler: async (ctx, { projectID, parentID, type, name }) => {
     const currentUser = await userIdentity(ctx);
     const project = await ctx.db.get("projects", projectID);
+    const parentFolder = parentID ? await ctx.db.get("files", parentID) : null;
 
     const files = await ctx.db
       .query("files")
@@ -38,6 +40,17 @@ export const addFile = mutation({
       throw new ConvexError({
         message: "Unauthorized Access",
         cause: "You are not the owner of this project",
+      });
+
+    if (
+      parentID &&
+      (!parentFolder || // this check is for the case when parentID is provided but the corresponding folder is not found in the database
+        parentFolder.projectID !== projectID ||
+        parentFolder.type !== "FOLDER")
+    )
+      throw new ConvexError({
+        message: "Invalid Parent Folder",
+        cause: "The target parent folder does not exist in this project.",
       });
 
     const isNewFileNameUnique = checkIsNewFileNameUnique(name, files);

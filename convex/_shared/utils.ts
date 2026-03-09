@@ -11,9 +11,5 @@ export const checkIsNewFileNameUnique = (
     if (currentFile && file._id === currentFile._id)
         return true; // skipping the comparing the current file name with itself
 
-    // prettier-ignore
-    if (currentFile && file.type !== currentFile.type)
-        return true;
-
     return file.name !== newName;
   });
