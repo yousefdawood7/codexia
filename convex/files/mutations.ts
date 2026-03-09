@@ -65,7 +65,7 @@ export const renameFile = mutation({
     ctx.db.patch("projects", projectID, { updatedAt: now });
     return ctx.db.patch("files", fileID, {
       name: newName,
-      updateAt: now,
+      updatedAt: now,
     });
   },
 });
