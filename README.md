@@ -11,7 +11,6 @@
 	 <img alt="Inngest" src="https://img.shields.io/badge/Inngest-Events-6366f1?style=for-the-badge" />
 	 <img alt="Clerk" src="https://img.shields.io/badge/Clerk-Auth-6c47ff?style=for-the-badge" />
 	 <img alt="Sentry" src="https://img.shields.io/badge/Sentry-Monitoring-362d59?style=for-the-badge&logo=sentry" />
-	 <img alt="License" src="https://img.shields.io/badge/License-Unspecified-9ca3af?style=for-the-badge" />
   </p>
 
   <p>
