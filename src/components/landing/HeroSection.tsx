@@ -31,7 +31,7 @@ export default function HeroSection() {
         speed={5}
         scale={1}
         color="#535154"
-        noiseIntensity={0.5}
+        noiseIntensity={0}
         rotation={0}
       />
 

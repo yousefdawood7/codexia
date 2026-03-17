@@ -9,6 +9,9 @@
  */
 
 import type * as _shared_dal from "../_shared/dal.js";
+import type * as _shared_utils from "../_shared/utils.js";
+import type * as files_mutations from "../files/mutations.js";
+import type * as files_queries from "../files/queries.js";
 import type * as projects_mutations from "../projects/mutations.js";
 import type * as projects_queries from "../projects/queries.js";
 import type * as types from "../types.js";
@@ -21,6 +24,9 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   "_shared/dal": typeof _shared_dal;
+  "_shared/utils": typeof _shared_utils;
+  "files/mutations": typeof files_mutations;
+  "files/queries": typeof files_queries;
   "projects/mutations": typeof projects_mutations;
   "projects/queries": typeof projects_queries;
   types: typeof types;

@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
 import { useQuery } from "convex/react";
+import { ConvexError } from "convex/values";
 import { LucideCloudCheck, LucideLoader } from "lucide-react";
 import { api } from "@/../convex/_generated/api";
 import { Id } from "@/../convex/_generated/dataModel";
@@ -19,21 +20,24 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { useOptimisticRenameProject } from "@/features/projects/hooks/useOptimisticRenameProject";
+import { useCrash } from "@/hooks/useCrash";
 import { cn, getFormattedTimeFromNow } from "@/lib/utils";
 
 type EditorBreadcrumbProps = {
-  projectId: Id<"projects">;
+  projectID: Id<"projects">;
 };
 
-export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
+export default function EditorBreadcrumb({ projectID }: EditorBreadcrumbProps) {
   const [isRenameActive, setIsRenameActive] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement | null>(null);
+  const crashError = useCrash();
+
   const renameProject = useOptimisticRenameProject(
     api.projects.mutations.renameProject,
   );
 
   const project = useQuery(api.projects.queries.getProjectById, {
-    projectId,
+    projectID,
   });
 
   function handleIsActive() {
@@ -45,20 +49,45 @@ export default function EditorBreadcrumb({ projectId }: EditorBreadcrumbProps) {
     ref.current?.select();
   }
 
-  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+  async function handleRenameProject({
+    projectID,
+    newName,
+  }: {
+    projectID: Id<"projects">;
+    newName: string;
+  }) {
+    try {
+      await renameProject({ projectID, newName });
+    } catch (error) {
+      if (error instanceof ConvexError)
+        crashError({
+          message: error.data.message,
+          cause: (error.data.cause as string) || "Something Went Wrong",
+        });
+      if (error instanceof Error)
+        crashError(
+          {
+            message: error.message,
+          },
+          false,
+        );
+    }
+  }
+
+  async function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     // prettier-ignore
     if (e.key !== "Enter" && e.key !== "Escape")
       return;
 
     if (e.key === "Enter")
-      renameProject({ projectId, newName: e.currentTarget.value });
+      await handleRenameProject({ projectID, newName: e.currentTarget.value });
 
     setIsRenameActive(false);
   }
 
-  function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+  async function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+    await handleRenameProject({ projectID, newName: e.target.value });
     setIsRenameActive(false);
-    renameProject({ projectId, newName: e.target.value });
   }
 
   const ProjectNameRename = (

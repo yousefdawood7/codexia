@@ -1,5 +1,6 @@
 onlyBuiltDependencies:
   - "@clerk/shared"
+  - "@sentry/cli"
   - esbuild
   - protobufjs
   - sharp

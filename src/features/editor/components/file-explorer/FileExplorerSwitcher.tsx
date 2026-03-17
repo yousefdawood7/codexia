@@ -21,9 +21,9 @@ export default function FileExplorerSwitcher({
   isOpened,
   setIsOpened,
 }: FileExplorerSwitcherProps) {
-  const { projectId } = useParams<{ projectId: Id<"projects"> }>();
+  const { projectId: projectID } = useParams<{ projectId: Id<"projects"> }>();
   const project = useQuery(api.projects.queries.getProjectById, {
-    projectId,
+    projectID,
   });
 
   // prettier-ignore

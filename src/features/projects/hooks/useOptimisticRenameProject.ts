@@ -1,5 +1,6 @@
 import { useMutation } from "convex/react";
 import { FunctionReference } from "convex/server";
+import { ConvexError } from "convex/values";
 import { api } from "@/../convex/_generated/api";
 import { Id } from "@/../convex/_generated/dataModel";
 import { getCurrentDate } from "@/lib/utils";
@@ -10,24 +11,24 @@ export function useOptimisticRenameProject(
   const optimisticCreateProject = useMutation(
     renameProject,
   ).withOptimisticUpdate((localStore, args) => {
-    const { projectId, newName } = args as {
-      projectId: Id<"projects">;
+    const { projectID, newName } = args as {
+      projectID: Id<"projects">;
       newName: string;
     };
     const currentProject = localStore.getQuery(
       api.projects.queries.getProjectById,
-      { projectId },
+      { projectID },
     );
 
     // prettier-ignore
     if (!currentProject)
-        throw new Error("Project not found in local store");
+        throw new ConvexError({message: "Project not found in local store"});
 
     const now = getCurrentDate();
 
     localStore.setQuery(
       api.projects.queries.getProjectById,
-      { projectId },
+      { projectID },
       {
         ...currentProject,
         name: newName,
